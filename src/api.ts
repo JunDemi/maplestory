@@ -1,16 +1,32 @@
 const BASE_URL = "https://open.api.nexon.com/maplestory/v1";
-const API_KEY = "test_a4346f5121c7f30c707df671c007c2ac304a2b8f62af62a1978a3cfafcdb78a4a2644f2d70588173cc879fdcfade9b22";
+const API_KEY = String(process.env.REACT_APP_API_KEY);
 
 //캐릭터 식별자(ocid)
-export const getOCID = (name: string) => {
-    return fetch(`${BASE_URL}/id?character_name=${name}`, {
-        headers: {
-            "x-nxopen-api-key": API_KEY
-        }
+export const getOCID = (name?: string) => {
+  return fetch(`${BASE_URL}/id?character_name=${name}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) { throw new Error("유효하지 않은 닉네임") }
+      return response.json();
     })
-    .then(response => response.json()).catch(error => console.log("유효하지 않은 닉네임"));
-}
+    .catch((error) => console.log(error));
+};
 //캐릭터 기본 정보
+export const getBasic = (ocid?: string) => {
+  return fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=2023-12-21`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { throw new Error("유효하지 않은 닉네임") }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //인기도 정보
 //종합 능력치 정보
 //하이퍼 스탯 정보
