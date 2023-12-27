@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './Pages/Home';
 import Search from './Pages/Search';
+import Member from './Pages/Member';
 
 function App() {
  
@@ -11,6 +12,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
+        <Route path='/member' element={<Member/>}/>
         <Route path='/search' element={<Search/>}/>
       </Routes>
     </BrowserRouter>

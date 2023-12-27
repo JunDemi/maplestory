@@ -18,7 +18,6 @@ menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
@@ -30,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: whitesmoke;
 }
 ol, ul {
 	list-style: none;
@@ -54,15 +54,13 @@ textarea {
 }
 /*scroll bar*/
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 3px;
 }
   
-/* Track */
 ::-webkit-scrollbar-track {
     background: none;
 }
   
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #bdbdbd;
     border-radius: 5px;
