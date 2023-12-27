@@ -8,7 +8,7 @@ function Home() {
   return (
     <>
       <Helmet>
-        <title>Maple | Home</title>
+        <title>Wings | Home</title>
       </Helmet>
       <Banner/>
       <div className='my-40'>

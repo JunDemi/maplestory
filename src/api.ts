@@ -10,8 +10,12 @@ const getYesterday = (date: Date) => {
 }
 const now = new Date();
 const formatnow = new Date(now);
-formatnow.setDate(now.getDate() - 1);
-const yesterday = getYesterday(formatnow);
+//0시에서 10시 사이일 경우, 이틀 전으로 출력
+const isEarlyMorning = now.getHours() >= 0 && now.getHours() < 10;
+const daysAgo = isEarlyMorning ? 2 : 1;
+const targetDate = new Date(now);
+targetDate.setDate(now.getDate() - daysAgo);
+const yesterday = getYesterday(targetDate);
 
 //캐릭터 식별자(ocid)
 export const getOCID = (name?: string) => {

@@ -33,7 +33,7 @@ function Member() {
   return (
     <>
       <Helmet>
-        <title>Maple | Member</title>
+        <title>Wings | Member</title>
       </Helmet>
       <div
         className='bg-cover bg-fixed w-full h-[25dvh] flex flex-col justify-center items-center text-white gap-10 relative'

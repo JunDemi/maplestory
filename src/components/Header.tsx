@@ -66,7 +66,7 @@ function Header() {
             >
                 <div className="flex justify-between items-center lg:px-24 px-5 text-white">
                     <Link to="/">
-                        <span className='tracking-wide text-2xl'>MapleStory</span>
+                        <span className='tracking-wide text-2xl'>Wings</span>
                     </Link>
                     <div className="lg:flex hidden justify-between text-sm items-center gap-8 font-thin text-center">
                         <Link className='w-12 space-y-2'

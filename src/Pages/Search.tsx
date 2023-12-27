@@ -53,7 +53,7 @@ function Search() {
   return (
     <>
       <Helmet>
-        <title>Maple | Search</title>
+        <title>Wings | Search</title>
       </Helmet>
       <div
         className='bg-cover bg-fixed w-full h-[25dvh] flex flex-col justify-center items-center text-white gap-10 relative'
