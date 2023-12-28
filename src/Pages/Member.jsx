@@ -32,22 +32,19 @@ function Member() {
     }))
   );
     const filtered = getMemberOCID.filter(query => query.data !== null).map(query => query.data);
-    console.log(filtered);
-  // const getmemberBasic = useQueries(
-  //   memberOCIDdata?.map((data) => ({
-  //     queryKey: ["memberOCID", data],
-  //     queryFn: () => getBasic(data),
-  //     staleTime: Infinity,
-  //     enabled: !!data
-  //   }))
-  // );
-  // const memberArray2 = [];
-  // if(getmemberBasic !== undefined){
-  //   getmemberBasic?.map((data) => memberArray2.push(data.data));
-  // }
-  // const filterdMember = memberArray2
-  // .filter(data => (data.character_name !== undefined))
-  // .sort((a, b) => b.character_level - a.character_level);
+    const getmemberBasic = useQueries(
+    filtered.map((data) => ({
+      queryKey: ["memberOCID", data?.ocid],
+      queryFn: () => getBasic(data?.ocid),
+      staleTime: Infinity,
+      enabled: !!data
+    }))
+  );
+  const memberArray2 = [];
+  getmemberBasic.map((query) => (
+    memberArray2.push(query.data)
+  ));
+  
   return (
     <>
       <Helmet>
@@ -68,11 +65,11 @@ function Member() {
           "Loading..."
         ) : (
           <>
-            {/* <h2 className="text-2xl mt-10">
-              길드원 수: {filterdMember.length}명
+            <h2 className="text-2xl mt-10">
+              길드원 수: {memberArray2.length}명
             </h2>
             <div className="grid lg:grid-cols-4 grid-cols-1 my-10 text-center gap-3">
-              {filterdMember.map((data, number) => (
+              {memberArray2.sort((a,b) => b.character_level - a.character_level).map((data, number) => (
                 <div key={number}>
                   <img src={data?.character_image} alt=""/>
                   <p>{data?.character_name}</p>
@@ -80,7 +77,7 @@ function Member() {
                   <p>{data?.character_level}</p>
                 </div>
               ))}
-            </div> */}
+            </div>
           </>
         )}
       </div>
