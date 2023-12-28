@@ -1,6 +1,7 @@
 const BASE_URL = "https://open.api.nexon.com/maplestory/v1";
 const API_KEY = String(process.env.REACT_APP_API_KEY);
 export const guildID = "c00548e2d4a1c249dc389675247f5a3b";
+
 //어제의 날짜 출력
 const getYesterday = (date) => {
   const year = date.getFullYear();
@@ -14,7 +15,7 @@ const isEarlyMorning = now.getHours() >= 0 && now.getHours() < 10;
 const daysAgo = isEarlyMorning ? 2 : 1;
 const targetDate = new Date(now);
 targetDate.setDate(now.getDate() - daysAgo);
-const yesterday = getYesterday(targetDate);
+export const yesterday = getYesterday(targetDate);
 
 //캐릭터 식별자(ocid)
 export const getOCID = async(name) => {
