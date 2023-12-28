@@ -62,7 +62,7 @@ function Header() {
                 animate={navAnimation}
                 transition={{ duration: 0.1 }}
                 initial={"top"}
-                className='fixed top-0 w-full z-20 flex flex-col'
+                className='fixed top-0 w-full z-10 flex flex-col'
             >
                 <div className="flex justify-between items-center lg:px-24 px-5 text-white">
                     <Link to="/">
@@ -154,7 +154,7 @@ function Header() {
                 initial={{ opacity: 0 }}
                 animate={buttonAnimation}
                 transition={{ duration: 0.1 }}
-                className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 shadow-xl z-30 transition"
+                className="fixed bottom-4 right-4 bg-white lg:p-5 p-3 rounded-full hover:bg-gray-300 shadow-xl z-10 transition"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

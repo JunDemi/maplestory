@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useQueries, useQuery } from "react-query";
 import { getOCID, getBasic, guildID, getGuildBasic, yesterday } from "../api";
 import { motion, AnimatePresence } from "framer-motion";
 import { cls } from "../cssUtils";
-import { useNavigate, useMatch } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface IMemberBasic {
   character_name: string;
@@ -14,7 +14,10 @@ interface IMemberBasic {
 }
 
 function Member() {
-  const navigate =  useNavigate();
+  const [nameMatch, set_nameMatch] = useState(false);
+  const navigate = useNavigate();
+  const locate = useLocation();
+
   //길드 멤버 이름 불러오기
   const { isLoading, data: guildBasic } = useQuery(
     ["my_guildBasic"],
@@ -25,7 +28,7 @@ function Member() {
     }
   );
   //불러온 멤버 목록을 배열에 저장
-  const memberArray1:string[] = [];
+  const memberArray1: string[] = [];
   if (!isLoading && guildBasic !== undefined) {
     guildBasic.guild_member.map((data: any) => memberArray1.push(data));
   }
@@ -58,14 +61,16 @@ function Member() {
     }))
   );
   //레벨 높은 순으로 정렬하고 배열에 저장
-  const memberArray2:IMemberBasic[] = [];
+  const memberArray2: IMemberBasic[] = [];
   getmemberBasic.map((query) => memberArray2.push(query.data));
   memberArray2.sort((a, b) => b.character_level - a.character_level);
   //길드 관리자들은 배열에 첫 부분으로 이동
-  const adminName = ['해녀데스', '랸냐', '불협화음', '활맥', '키단', '볼짝'];
+  const adminName = ["해녀데스", "랸냐", "불협화음", "활맥", "키단", "볼짝"];
   adminName.forEach((name) => {
-    const indexAdmin = memberArray2.findIndex((item) => item?.character_name === name);
-    if (indexAdmin !== -1){
+    const indexAdmin = memberArray2.findIndex(
+      (item) => item?.character_name === name
+    );
+    if (indexAdmin !== -1) {
       const move = memberArray2[indexAdmin];
       memberArray2.splice(indexAdmin, 1);
       memberArray2.unshift(move);
@@ -73,13 +78,17 @@ function Member() {
   });
   //캐릭터 카드 클릭 이벤트
   const onCardClick = (charater_name: string) => {
-    navigate(`/member/${charater_name}`);
-  }
-  const onOverlayClicked = () => navigate("/member");
-  const nameMatch = useMatch("/member/:character_name");
-  const clickedCard = 
-  nameMatch?.params.character_name && 
-  memberArray2.find((char_name) => char_name.character_name === nameMatch.params.character_name);
+    navigate(`${locate.pathname}?name=${charater_name}`);
+    set_nameMatch(true);
+  };
+  const onOverlayClicked = () => {
+    navigate(`/member`);
+    set_nameMatch(false);
+  };
+  const myParams = decodeURIComponent(locate.search.slice("?name=".length));
+  const BasicMatch = memberArray2.find(
+    (obj) => obj?.character_name === myParams
+  );
   return (
     <>
       <Helmet>
@@ -105,22 +114,28 @@ function Member() {
               길드원 수: {memberArray2.length}명
             </h2>
             <AnimatePresence>
-            <div className="grid lg:grid-cols-4 grid-cols-1 my-10 gap-6">
-              {memberArray2
-                .map((data, number) => (
+              <div className="grid lg:grid-cols-4 grid-cols-1 my-10 gap-6">
+                {memberArray2.map((data, number) => (
                   <motion.div
                     layoutId={data?.character_name}
                     onClick={() => onCardClick(data?.character_name)}
                     key={number}
                     className={cls(
-                      data?.character_name === "볼짝" ? 'text-pink-700 border-pink-300' 
-                      : data?.character_name === "활맥" ? 'text-blue-700 border-blue-300' 
-                      : data?.character_name === "키단" ? 'text-blue-700 border-blue-300' 
-                      : data?.character_name === "불협화음" ? 'text-blue-700 border-blue-300' 
-                      : data?.character_name === "랸냐" ? 'text-blue-700 border-blue-300' 
-                      : data?.character_name === "해녀데스" ? 'text-blue-700 border-blue-300' 
-                      : ' text-gray-700 border-white'
-                  ,'bg-white border shadow-md py-5 lg:px-14 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-3')}
+                      data?.character_name === "볼짝"
+                        ? "text-pink-700 border-pink-300"
+                        : data?.character_name === "활맥"
+                        ? "text-blue-700 border-blue-300"
+                        : data?.character_name === "키단"
+                        ? "text-blue-700 border-blue-300"
+                        : data?.character_name === "불협화음"
+                        ? "text-blue-700 border-blue-300"
+                        : data?.character_name === "랸냐"
+                        ? "text-blue-700 border-blue-300"
+                        : data?.character_name === "해녀데스"
+                        ? "text-blue-700 border-blue-300"
+                        : " text-gray-700 border-white",
+                      "bg-white border shadow-md py-5 lg:px-14 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-3"
+                    )}
                     whileHover={{ y: -5, backgroundColor: "#e9e9e9" }}
                   >
                     <img src={data?.character_image} alt="" className="w-24" />
@@ -131,29 +146,76 @@ function Member() {
                     <p className="text-xs">{data?.character_class}</p>
                   </motion.div>
                 ))}
-            </div>
+              </div>
             </AnimatePresence>
             <AnimatePresence>
-            {nameMatch ? 
-              <>
-                <motion.div
-                  className="fixed top-0 w-full h-full bg-[rgba(0,0,0,0.5)] z-10"
-                  onClick={onOverlayClicked}
-                  initial={{opacity: 0}}
-                  animate={{opacity: 1}}
-                  exit={{opacity: 0}}
-                />
-                <motion.div
-                className="absolute w-[40vw] h-[80vh] bg-black left-0 right-0 z-20 mx-auto overflow-hidden"
-                >
-                  {clickedCard && (
-                    <>
-                      <h1>Hello</h1>
-                    </>
-                    )}
-                </motion.div>
-              </>
-            : null}
+              {nameMatch ? (
+                <>
+                  <motion.div
+                    className="fixed top-0 w-full h-full bg-[rgba(0,0,0,0.5)] z-20 cursor-pointer"
+                    onClick={onOverlayClicked}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                  <motion.div
+                    layoutId={myParams}
+                    className="fixed top-[20dvh] lg:w-[50vw] w-[95vw] h-[60vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                  >
+                    <div
+                      style={{
+                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
+                      }}
+                      className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5"
+                    >
+                      <motion.img
+                        src={BasicMatch?.character_image}
+                        alt=""
+                        className="lg:w-32 w-24"
+                      />
+                      <div className="text-white flex flex-col gap-1 tracking-wider">
+                        <div className="flex justify-center items-center gap-3">
+                          <p className="text-2xl font-bold">
+                            {BasicMatch?.character_name}
+                          </p>
+
+                          {BasicMatch?.character_name === "볼짝" ? (
+                            <span className="text-xs bg-red-800 px-2 py-[0.1rem] rounded-full">
+                              마스터
+                            </span>
+                          ) : BasicMatch?.character_name === "활맥" ? (
+                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
+                              부마스터
+                            </span>
+                          ) : BasicMatch?.character_name === "키단" ? (
+                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
+                              부마스터
+                            </span>
+                          ) : BasicMatch?.character_name === "불협화음" ? (
+                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
+                              부마스터
+                            </span>
+                          ) : BasicMatch?.character_name === "랸냐" ? (
+                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
+                              부마스터
+                            </span>
+                          ) : BasicMatch?.character_name === "해녀데스" ? (
+                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
+                              부마스터
+                            </span>
+                          ) : null}
+                        </div>
+                        <p className="text-sm">
+                          Lv.{BasicMatch?.character_level}
+                        </p>
+                        <p className="text-sm">
+                          {BasicMatch?.character_class}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </>
+              ) : null}
             </AnimatePresence>
           </>
         )}
