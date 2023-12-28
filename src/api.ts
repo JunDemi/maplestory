@@ -3,7 +3,7 @@ const API_KEY = String(process.env.REACT_APP_API_KEY);
 export const guildID = "c00548e2d4a1c249dc389675247f5a3b";
 
 //어제의 날짜 출력
-const getYesterday = (date) => {
+const getYesterday = (date: Date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -18,7 +18,7 @@ targetDate.setDate(now.getDate() - daysAgo);
 export const yesterday = getYesterday(targetDate);
 
 //캐릭터 식별자(ocid)
-export const getOCID = async(name) => {
+export const getOCID = async(name?: string) => {
   return await fetch(`${BASE_URL}/id?character_name=${name}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
@@ -31,7 +31,7 @@ export const getOCID = async(name) => {
     .catch((error) => console.log(error));
 };
 //캐릭터 기본 정보
-export const getBasic = async(ocid) => {
+export const getBasic = async(ocid?: string) => {
   return await fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=${yesterday}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,

@@ -15,7 +15,7 @@ function Search() {
   } = useForm({
     mode: "all",
   });
-  const onValid = (data) => {
+  const onValid = (data: any) => {
     set_characterName(data.ocid);
     reset();
   }
