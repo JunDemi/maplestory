@@ -4,46 +4,29 @@ import { useQuery } from 'react-query';
 import { getBasic, getOCID } from "../api";
 import { Helmet } from "react-helmet";
 
-interface Iocid {
-  ocid: string;
-}
-
-interface Ibasic {
-  date: string;
-  character_name: string;
-  world_name: string;
-  character_gender: string;
-  character_class: string;
-  character_class_level: string;
-  character_level: number;
-  character_exp_rate: string;
-  character_guild_name: string;
-  character_image: string;
-}
-
 function Search() {
-  const [characterName, set_characterName] = useState<string | any>();
+  const [characterName, set_characterName] = useState();
   const {
     register,
     handleSubmit,
     watch,
     reset,
     formState: { errors },
-  } = useForm<Iocid>({
+  } = useForm({
     mode: "all",
   });
-  const onValid = (data: any) => {
+  const onValid = (data) => {
     set_characterName(data.ocid);
     reset();
   }
-  const { data: ociddData } = useQuery<Iocid>(["my_ocid", characterName],
+  const { data: ociddData } = useQuery(["my_ocid", characterName],
     () => getOCID(characterName),
     {
       staleTime: Infinity,
       enabled: !!characterName
     }
   );
-  const { isLoading, data: basicData } = useQuery<Ibasic>(["my_basic", ociddData?.ocid],
+  const { isLoading, data: basicData } = useQuery(["my_basic", ociddData?.ocid],
     () => getBasic(ociddData?.ocid),
     {
       staleTime: Infinity,

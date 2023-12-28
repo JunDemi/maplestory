@@ -1,8 +1,8 @@
 const BASE_URL = "https://open.api.nexon.com/maplestory/v1";
 const API_KEY = String(process.env.REACT_APP_API_KEY);
-
+export const guildID = "c00548e2d4a1c249dc389675247f5a3b";
 //어제의 날짜 출력
-const getYesterday = (date: Date) => {
+const getYesterday = (date) => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -17,20 +17,20 @@ targetDate.setDate(now.getDate() - daysAgo);
 const yesterday = getYesterday(targetDate);
 
 //캐릭터 식별자(ocid)
-export const getOCID = async(name?: string) => {
+export const getOCID = async(name) => {
   return await fetch(`${BASE_URL}/id?character_name=${name}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
   })
     .then((response) => {
-      if (!response.ok) { return {ocid: "none"}  }
+      if (!response.ok) { return null }
       return response.json();
     })
     .catch((error) => console.log(error));
 };
 //캐릭터 기본 정보
-export const getBasic = async(ocid?: string) => {
+export const getBasic = async(ocid) => {
   return await fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=${yesterday}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
@@ -59,22 +59,9 @@ export const getBasic = async(ocid?: string) => {
 //5차 스킬 정보
 //6차 스킬 정보
 //무릉도장 정보
-//길드 식별자(oguild_id)
-export const getGuildID = async(guildName: string) => {
-  return await fetch(`${BASE_URL}/guild/id?guild_name=${guildName}&world_name=%EC%8A%A4%EC%B9%B4%EB%8B%88%EC%95%84`, {
-    headers: {
-      "x-nxopen-api-key": API_KEY,
-    },
-  })
-  .then((response) => {
-    if (!response.ok) { throw new Error("유효하지 않은 길드 이름") }
-    return response.json();
-  })
-  .catch((error) => console.log(error));
-};
 //길드 정보
-export const getGuildBasic = async(guildId?: string) => {
-  return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildId}&date=${yesterday}`, {
+export const getGuildBasic = async() => {
+  return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildID}&date=${yesterday}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },

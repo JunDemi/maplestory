@@ -31,7 +31,7 @@ function Header() {
     const { scrollY } = useScroll();
     const navAnimation = useAnimation();
     const buttonAnimation = useAnimation();
-    const [toggleMenu, set_toggleMenu] = useState<boolean>(false);
+    const [toggleMenu, set_toggleMenu] = useState(false);
     const mobileMenu = () => {
         set_toggleMenu((prev) => !prev);
     };
