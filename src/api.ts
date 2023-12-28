@@ -9,7 +9,6 @@ const getYesterday = (date: Date) => {
   return `${year}-${month}-${day}`;
 }
 const now = new Date();
-const formatnow = new Date(now);
 //0시에서 10시 사이일 경우, 이틀 전으로 출력
 const isEarlyMorning = now.getHours() >= 0 && now.getHours() < 10;
 const daysAgo = isEarlyMorning ? 2 : 1;
@@ -18,27 +17,27 @@ targetDate.setDate(now.getDate() - daysAgo);
 const yesterday = getYesterday(targetDate);
 
 //캐릭터 식별자(ocid)
-export const getOCID = (name?: string) => {
-  return fetch(`${BASE_URL}/id?character_name=${name}`, {
+export const getOCID = async(name?: string) => {
+  return await fetch(`${BASE_URL}/id?character_name=${name}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
   })
     .then((response) => {
-      if (!response.ok) { throw new Error("유효하지 않은 닉네임") }
+      if (!response.ok) { return {ocid: "none"}  }
       return response.json();
     })
     .catch((error) => console.log(error));
 };
 //캐릭터 기본 정보
-export const getBasic = (ocid?: string) => {
-  return fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=${yesterday}`, {
+export const getBasic = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=${yesterday}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
   })
   .then((response) => {
-    if (!response.ok) { throw new Error("유효하지 않은 닉네임") }
+    if (!response.ok) { return {charater_name: "불러오기 실패"} }
     return response.json();
   })
   .catch((error) => console.log(error));
@@ -61,8 +60,8 @@ export const getBasic = (ocid?: string) => {
 //6차 스킬 정보
 //무릉도장 정보
 //길드 식별자(oguild_id)
-export const getGuildID = (guildName: string) => {
-  return fetch(`${BASE_URL}/guild/id?guild_name=${guildName}&world_name=%EC%8A%A4%EC%B9%B4%EB%8B%88%EC%95%84`, {
+export const getGuildID = async(guildName: string) => {
+  return await fetch(`${BASE_URL}/guild/id?guild_name=${guildName}&world_name=%EC%8A%A4%EC%B9%B4%EB%8B%88%EC%95%84`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -74,8 +73,8 @@ export const getGuildID = (guildName: string) => {
   .catch((error) => console.log(error));
 };
 //길드 정보
-export const getGuildBasic = (guildId?: string) => {
-  return fetch(`${BASE_URL}/guild/basic?oguild_id=${guildId}&date=${yesterday}`, {
+export const getGuildBasic = async(guildId?: string) => {
+  return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildId}&date=${yesterday}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },

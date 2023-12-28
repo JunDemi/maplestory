@@ -15,7 +15,7 @@ interface Ibasic {
   character_gender: string;
   character_class: string;
   character_class_level: string;
-  character_level: string;
+  character_level: number;
   character_exp_rate: string;
   character_guild_name: string;
   character_image: string;

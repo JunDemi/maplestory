@@ -2,8 +2,6 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import Banner from '../components/Banner';
 
-const scrollGIF = '/Scroll-Down-white.gif';
-
 function Home() {
   return (
     <>
