@@ -5,6 +5,7 @@ import { getOCID, getBasic, guildID, getGuildBasic, yesterday } from "../api";
 import { motion, AnimatePresence } from "framer-motion";
 import { cls } from "../cssUtils";
 import { useLocation, useNavigate } from "react-router-dom";
+import MemberInfo from "../components/MemberInfo";
 
 interface IMemberBasic {
   character_name: string;
@@ -15,6 +16,7 @@ interface IMemberBasic {
 
 function Member() {
   const [nameMatch, set_nameMatch] = useState(false);
+  const [matchedName, set_matchedName] = useState<string>("");
   const navigate = useNavigate();
   const locate = useLocation();
 
@@ -78,16 +80,15 @@ function Member() {
   });
   //캐릭터 카드 클릭 이벤트
   const onCardClick = (charater_name: string) => {
-    navigate(`${locate.pathname}?name=${charater_name}`);
+    set_matchedName(charater_name);
     set_nameMatch(true);
   };
   const onOverlayClicked = () => {
-    navigate(`/member`);
+    set_matchedName("");
     set_nameMatch(false);
   };
-  const myParams = decodeURIComponent(locate.search.slice("?name=".length));
   const BasicMatch = memberArray2.find(
-    (obj) => obj?.character_name === myParams
+    (obj) => obj?.character_name === matchedName
   );
   return (
     <>
@@ -159,7 +160,7 @@ function Member() {
                     exit={{ opacity: 0 }}
                   />
                   <motion.div
-                    layoutId={myParams}
+                    layoutId={matchedName}
                     className="fixed top-[20dvh] lg:w-[50vw] w-[95vw] h-[60vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
@@ -213,6 +214,7 @@ function Member() {
                         </p>
                       </div>
                     </div>
+                    <MemberInfo name={matchedName}/>
                   </motion.div>
                 </>
               ) : null}
