@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getAbility, getDojang, getStat, getUnion } from "../api";
 import { cls } from "../cssUtils";
@@ -22,7 +22,7 @@ interface IAbility {
 }
 interface IDojang {
   dojang_best_floor: number;
-  date_dojang_record: string;
+  date_dojang_record: string | null;
   dojang_best_time: number;
 }
 interface IUnion {
@@ -31,6 +31,8 @@ interface IUnion {
   union_grade: string;
 }
 function MemberInfo({ ocid }: any) {//string타입으로 선언하면 의문 모를 타입 에러가 발생...
+  //무릉도장 기록 시간이 없을 경우
+  const [isRecord, set_isRecord] = useState("");
   //캐릭터 종합 스탯 불러오기
   const { data: statData } = useQuery<IStat>(
     ["your_stat", ocid],
@@ -62,6 +64,12 @@ function MemberInfo({ ocid }: any) {//string타입으로 선언하면 의문 모
   const minutes = Math.floor(Number(dojangData?.dojang_best_time) / 60);
   const seconds = Number(dojangData?.dojang_best_time) % 60;
   const formattedTime = `${minutes.toString().padStart(2, '0')}분 ${seconds.toString().padStart(2, '0')}초`;
+  //무릉도장 기록 시간 없을 경우
+    useEffect(()=> {
+      if(dojangData?.date_dojang_record){
+        set_isRecord(dojangData?.date_dojang_record.substring(0,10))
+      }
+    },[dojangData]);
   //캐릭터 유니온 정보 불러오기
   const { data: unionData } = useQuery<IUnion>(
     ["your_union", ocid],
@@ -132,7 +140,7 @@ function MemberInfo({ ocid }: any) {//string타입으로 선언하면 의문 모
             <h1 className="text-xl text-orange-600">{dojangData?.dojang_best_floor}층</h1>
             <div>
               <p className="text-xs text-gray-600">{formattedTime}</p>
-              <p className="text-xs text-gray-500">{dojangData?.date_dojang_record.substring(0,10)}</p>
+              <p className="text-xs text-gray-500">{isRecord}</p>
             </div>
           </div>
           </div>
