@@ -44,7 +44,31 @@ export const getBasic = async(ocid?: string) => {
   .catch((error) => console.log(error));
 };
 //인기도 정보
+export const getPop = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}//character/popularity?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) { return null }
+      return response.json();
+    })
+    .catch((error) => console.log(error));
+};
 //종합 능력치 정보
+export const getStat = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/stat?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //하이퍼 스탯 정보
 //성향 정보
 //어빌리티 정보

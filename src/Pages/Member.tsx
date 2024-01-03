@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { useQueries, useQuery } from "react-query";
-import { getOCID, getBasic, guildID, getGuildBasic, yesterday } from "../api";
+import { getOCID, getBasic, guildID, getGuildBasic, yesterday, getPop } from "../api";
 import { motion, AnimatePresence } from "framer-motion";
 import { cls } from "../cssUtils";
-import { useLocation, useNavigate } from "react-router-dom";
 import MemberInfo from "../components/MemberInfo";
 
 interface IMemberBasic {
@@ -17,8 +16,6 @@ interface IMemberBasic {
 function Member() {
   const [nameMatch, set_nameMatch] = useState(false);
   const [matchedName, set_matchedName] = useState<string>("");
-  const navigate = useNavigate();
-  const locate = useLocation();
 
   //길드 멤버 이름 불러오기
   const { isLoading, data: guildBasic } = useQuery(
@@ -83,12 +80,32 @@ function Member() {
     set_matchedName(charater_name);
     set_nameMatch(true);
   };
+  //카드 클릭 시 나타나는 김고 흐린 배경 클릭 시
   const onOverlayClicked = () => {
     set_matchedName("");
     set_nameMatch(false);
   };
+  //클릭한 카드 멤버의 이름과 일치한 배열 내의 이름을 뽑음
   const BasicMatch = memberArray2.find(
     (obj) => obj?.character_name === matchedName
+  );
+  //클릭한 카드 멤버의 Ocid불러오기
+  const { data: OcidforPop } = useQuery(
+    ["ocid_for_pop", matchedName], 
+    () => getOCID(matchedName),
+    {
+      staleTime: Infinity,
+      enabled: !!nameMatch,
+    }
+  );
+  //클릭한 카드 멤버의 ocid를 통해 인기도 조회
+  const { data: Pop } = useQuery(
+    ["ocid_for_pop", OcidforPop?.ocid], 
+    () => getPop(OcidforPop?.ocid),
+    {
+      staleTime: Infinity,
+      enabled: !!OcidforPop?.ocid,
+    }
   );
   return (
     <>
@@ -205,6 +222,7 @@ function Member() {
                               부마스터
                             </span>
                           ) : null}
+                          <span className="text-xs text-gray-300">|&nbsp;&nbsp;&nbsp;인기도 {Pop?.popularity.toLocaleString()}</span>
                         </div>
                         <p className="text-sm">
                           Lv.{BasicMatch?.character_level}
@@ -214,7 +232,7 @@ function Member() {
                         </p>
                       </div>
                     </div>
-                    <MemberInfo name={matchedName}/>
+                    <MemberInfo ocid={OcidforPop?.ocid}/>
                   </motion.div>
                 </>
               ) : null}
