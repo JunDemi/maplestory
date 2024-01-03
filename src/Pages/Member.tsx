@@ -178,7 +178,7 @@ function Member() {
                   />
                   <motion.div
                     layoutId={matchedName}
-                    className="fixed top-[20dvh] lg:w-[50vw] w-[95vw] h-[60vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                    className="fixed top-[12dvh] lg:w-[50vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
                       style={{

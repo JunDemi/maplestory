@@ -96,6 +96,31 @@ export const getAbility = async(ocid?: string) => {
 //5차 스킬 정보
 //6차 스킬 정보
 //무릉도장 정보
+export const getDojang = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/dojang?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
+//유니온 정보
+export const getUnion = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/user/union?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //길드 정보
 export const getGuildBasic = async() => {
   return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildID}&date=${yesterday}`, {

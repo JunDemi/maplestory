@@ -1,6 +1,6 @@
 import React from "react";
 import { useQuery } from "react-query";
-import { getAbility, getStat } from "../api";
+import { getAbility, getDojang, getStat, getUnion } from "../api";
 import { cls } from "../cssUtils";
 
 interface IStat {
@@ -20,8 +20,18 @@ interface IAbility {
     ability_value: string;
   }[]
 }
-function MemberInfo({ ocid }: any) {
-  //string타입으로 선언하면 의문 모를 타입 에러가 발생...
+interface IDojang {
+  dojang_best_floor: number;
+  date_dojang_record: string;
+  dojang_best_time: number;
+}
+interface IUnion {
+  date: string;
+  union_level: number;
+  union_grade: string;
+}
+function MemberInfo({ ocid }: any) {//string타입으로 선언하면 의문 모를 타입 에러가 발생...
+  //캐릭터 종합 스탯 불러오기
   const { data: statData } = useQuery<IStat>(
     ["your_stat", ocid],
     () => getStat(ocid),
@@ -30,9 +40,32 @@ function MemberInfo({ ocid }: any) {
       enabled: !!ocid,
     }
   );
+  //캐릭터 어빌리티 불러오기
   const { data: abilityData } = useQuery<IAbility>(
     ["your_ability", ocid],
     () => getAbility(ocid),
+    {
+      staleTime: Infinity,
+      enabled: !!ocid,
+    }
+  );
+  //캐릭터 무릉도장 불러오기
+  const { data: dojangData } = useQuery<IDojang>(
+    ["your_dojang", ocid],
+    () => getDojang(ocid),
+    {
+      staleTime: Infinity,
+      enabled: !!ocid,
+    }
+  );
+  //무릉도장 클리어 시간을 mm분 ss초로 포맷
+  const minutes = Math.floor(Number(dojangData?.dojang_best_time) / 60);
+  const seconds = Number(dojangData?.dojang_best_time) % 60;
+  const formattedTime = `${minutes.toString().padStart(2, '0')}분 ${seconds.toString().padStart(2, '0')}초`;
+  //캐릭터 유니온 정보 불러오기
+  const { data: unionData } = useQuery<IUnion>(
+    ["your_union", ocid],
+    () => getUnion(ocid),
     {
       staleTime: Infinity,
       enabled: !!ocid,
@@ -81,7 +114,7 @@ function MemberInfo({ ocid }: any) {
             </>
           ))}
         </div>
-        <div className="w-full pt-2">
+        <div className="w-full border-b border-gray-300 py-2">
         <p className="text-gray-500 text-xs mb-2">어빌리티</p>
           {abilityData?.ability_info.map((data, number) => (
               <p key={number} className={cls(
@@ -91,6 +124,22 @@ function MemberInfo({ ocid }: any) {
                 data.ability_grade === "레어" ? "text-blue-400" : ""
                 , "text-xs")}>{data.ability_value}</p>
           ))}
+        </div>
+        <div className="w-full pt-2 grid grid-cols-2 gap-5">
+          <div>
+          <p className="text-gray-500 text-xs mb-2">무릉도장</p>
+          <div className="flex justify-start items-center gap-5">
+            <h1 className="text-xl text-orange-600">{dojangData?.dojang_best_floor}층</h1>
+            <div>
+              <p className="text-xs text-gray-600">{formattedTime}</p>
+              <p className="text-xs text-gray-500">{dojangData?.date_dojang_record.substring(0,10)}</p>
+            </div>
+          </div>
+          </div>
+          <div>
+          <p className="text-gray-500 text-xs mb-2">유니온</p>
+            <h1 className="text-xl text-pink-600">Lv.{unionData?.union_level}</h1>
+          </div>
         </div>
       </div>
     </>
