@@ -193,7 +193,7 @@ function Member() {
                       />
                       <div className="text-white flex flex-col gap-1 tracking-wider">
                         <div className="flex justify-center items-center gap-3">
-                          <p className="text-2xl font-bold">
+                          <p className="lg:text-2xl text-xl font-bold">
                             {BasicMatch?.character_name}
                           </p>
 

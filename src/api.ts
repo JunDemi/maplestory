@@ -72,6 +72,18 @@ export const getStat = async(ocid?: string) => {
 //하이퍼 스탯 정보
 //성향 정보
 //어빌리티 정보
+export const getAbility = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/ability?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //장착 장비 정보
 //장착 심볼 정보
 //장착 안드로이드 정보
