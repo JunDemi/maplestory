@@ -1,37 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getAbility, getDojang, getStat, getUnion } from "../api";
-import { cls } from "../Utils";
+import { cls, myFirstStat } from "../Utils";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
+import { IAbility, IDojang, IStat, IUnion } from "../interfaces";
 
-interface IStat {
-  character_class: string;
-  date: string;
-  final_stat: {
-    stat_name: string;
-    stat_value: number;
-  }[];
-  remain_ap: string;
-}
-interface IAbility {
-  ability_grade: string;
-  ability_info: {
-    ability_no: number;
-    ability_grade: string;
-    ability_value: string;
-  }[];
-}
-interface IDojang {
-  dojang_best_floor: number;
-  date_dojang_record: string | null;
-  dojang_best_time: number;
-}
-interface IUnion {
-  date: string;
-  union_level: number;
-  union_grade: string;
-}
 function MemberStat() {
   //RecoilState불러오기
   const [ocid] = useRecoilState(ocidState);
@@ -111,7 +85,7 @@ function MemberStat() {
                   <p className="text-gray-500 text-xs">
                     {statData?.final_stat[data].stat_name}
                   </p>
-                  <p className="text-sm">
+                  <p className={cls(myFirstStat(statData?.character_class) === statData?.final_stat[data].stat_name ? "text-pink-700" : "", "text-sm")}>
                     {Number(
                       statData?.final_stat[data].stat_value
                     ).toLocaleString()}

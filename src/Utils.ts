@@ -2,6 +2,62 @@
 export const cls = (...classnames: string[]) => {
   return classnames.join(" ");
 };
+//직업 별 주스탯을 강조하여 표시하기 위함
+export const myFirstStat = (job?: string) => {
+  switch (job) {
+    case "히어로":
+    case "팔라딘":
+    case "다크나이트":
+    case "아란":
+    case "소울마스터":
+    case "미하일":
+    case "블래스터":
+    case "데몬슬레이어":
+    case "카이저":
+    case "아델":
+    case "제로":
+    case "바이퍼":
+    case "캐논마스터":
+    case "스트라이커":
+    case "은월":
+    case "아크":
+      return "STR"
+    case "보우마스터":
+    case "신궁":
+    case "패스파인더":
+    case "메르세데스":
+    case "윈드브레이커":
+    case "와일드헌터":
+    case "메카닉":
+    case "캡틴":
+    case "엔젤릭버스터":
+      return "DEX"
+    case "아크메이지(썬,콜)":
+    case "아크메이지(불,독)":
+    case "비숍":
+    case "플레임위자드":
+    case "에반":
+    case "루미너스":
+    case "배틀메이지":
+    case "키네시스":
+    case "일리움":
+    case "라라":
+      return "INT"
+    case "나이트로드":
+    case "섀도어":
+    case "듀얼블레이더":
+    case "팬텀":
+    case "나이트워커":
+    case "카데나":
+    case "호영":
+    case "칼리":
+      return "LUK"
+    case "데몬어벤져":
+      return "HP"
+    case "제논":
+      return "LUK" // &&"STR"&&"DEX"
+  }
+};
 //잠재옵션 내용이 너무 긴 옵션은 글자를 줄이도록 포맷
 export const optionFormat = (option: string) => {
   switch (option) {
@@ -235,8 +291,12 @@ export const optionFormat = (option: string) => {
       return "크뎀 +3%";
     case "크리티컬 데미지 : +1%":
       return "크뎀 +1%";
+    case "아이템 드롭률 : +20%":
+      return "드롭 +20%";
+    case "메소 획득량 : +20%":
+      return "메획 +20%";
     default:
-      return "잡옵";
+      return "";
   }
 };
 //추가옵션 등급 계산
@@ -288,7 +348,7 @@ export const optionCalc = (
       case "스트라이커":
       case "은월":
       case "아크":
-        return (Number(str) + (Number(all) * 10) + (Number(atk) * 4) + "급"); //STR
+        return Number(str) + Number(all) * 10 + Number(atk) * 4 + "급"; //STR
       case "보우마스터":
       case "신궁":
       case "패스파인더":
@@ -298,7 +358,7 @@ export const optionCalc = (
       case "메카닉":
       case "캡틴":
       case "엔젤릭버스터":
-        return (Number(dex) + (Number(all) * 10) + (Number(atk) * 4) + "급"); //DEX
+        return Number(dex) + Number(all) * 10 + Number(atk) * 4 + "급"; //DEX
       case "아크메이지(썬,콜)":
       case "아크메이지(불,독)":
       case "비숍":
@@ -309,7 +369,7 @@ export const optionCalc = (
       case "키네시스":
       case "일리움":
       case "라라":
-        return (Number(int) + (Number(all) * 10) + (Number(mag) * 4) + "급"); //INT
+        return Number(int) + Number(all) * 10 + Number(mag) * 4 + "급"; //INT
       case "나이트로드":
       case "섀도어":
       case "듀얼블레이더":
@@ -318,11 +378,19 @@ export const optionCalc = (
       case "카데나":
       case "호영":
       case "칼리":
-        return (Number(luk) + (Number(all) * 10) + (Number(atk) * 4) + "급"); //LUK
+        return Number(luk) + Number(all) * 10 + Number(atk) * 4 + "급"; //LUK
       case "데몬어벤져":
-        return ("HP +" + hp); //HP
+        return "HP +" + hp; //HP
       case "제논":
-        return ((Number(str) + Number(dex) + Number(luk) + (Number(atk) * 5) + (Number(all) * 20)) / 2 + "급"); //All Stat
+        return (
+          (Number(str) +
+            Number(dex) +
+            Number(luk) +
+            Number(atk) * 5 +
+            Number(all) * 20) /
+            2 +
+          "급"
+        ); //All Stat
     }
   }
 };

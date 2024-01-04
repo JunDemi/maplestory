@@ -32,7 +32,7 @@ function MemberItem() {
                 <div className="flex justify-start items-center gap-5">
                   <img src={data.item_icon} alt="" className="w-7" />
                   <div>
-                    <p className="text-gray-600">{data.item_equipment_slot}</p>
+                    <p className="text-gray-600 text-[0.6rem]">{data.item_equipment_slot}</p>
                     <p>{data.item_name}</p>
                     {Number(data.starforce) ? (
                       <div className="text-yellow-500 flex justify-start items-center">
@@ -126,6 +126,8 @@ function MemberItem() {
                       </div>
                     </div>
                     <div className="flex justify-center items-center gap-5 p-2">
+                      {data.additional_potential_option_1 ? 
+                      <>
                       <h1 className="text-[0.7rem] text-gray-500">에디</h1>
                       <div
                         className={cls(
@@ -152,6 +154,9 @@ function MemberItem() {
                           {optionFormat(data.additional_potential_option_3)}
                         </p>
                       </div>
+                      </>
+                      : null}
+                      
                     </div>
                   </div>
                 </>
