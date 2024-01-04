@@ -7,7 +7,7 @@
 - TypeScript
 - React Query
 - React Hook Form
-- Recoil / Redux
+- Recoil
 - Tailwind CSS
 - Framer Motion
 

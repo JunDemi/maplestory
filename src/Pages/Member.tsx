@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useQueries, useQuery } from "react-query";
-import { getOCID, getBasic, guildID, getGuildBasic, yesterday, getPop } from "../api";
+import {
+  getOCID,
+  getBasic,
+  guildID,
+  getGuildBasic,
+  yesterday,
+  getPop,
+} from "../api";
 import { motion, AnimatePresence } from "framer-motion";
 import { cls } from "../cssUtils";
 import MemberInfo from "../components/MemberInfo";
+import { useRecoilState } from "recoil";
+import { ocidState } from "../atom";
 
 interface IMemberBasic {
   character_name: string;
@@ -16,6 +25,7 @@ interface IMemberBasic {
 function Member() {
   const [nameMatch, set_nameMatch] = useState(false);
   const [matchedName, set_matchedName] = useState<string>("");
+  const [select_ocid, set_select_ocid] = useRecoilState<string>(ocidState);
 
   //길드 멤버 이름 불러오기
   const { isLoading, data: guildBasic } = useQuery(
@@ -91,16 +101,20 @@ function Member() {
   );
   //클릭한 카드 멤버의 Ocid불러오기
   const { data: OcidforPop } = useQuery(
-    ["ocid_for_pop", matchedName], 
+    ["ocid_for_pop", matchedName],
     () => getOCID(matchedName),
     {
       staleTime: Infinity,
       enabled: !!nameMatch,
     }
   );
+  //클릭한 카드 멤버의 Ocid를 RecoilState에 저장
+  useEffect(() => {
+    set_select_ocid(OcidforPop?.ocid);
+  }, [OcidforPop, set_select_ocid]);
   //클릭한 카드 멤버의 ocid를 통해 인기도 조회
   const { data: Pop } = useQuery(
-    ["ocid_for_pop", OcidforPop?.ocid], 
+    ["ocid_for_pop", OcidforPop?.ocid],
     () => getPop(OcidforPop?.ocid),
     {
       staleTime: Infinity,
@@ -192,7 +206,7 @@ function Member() {
                         className="lg:w-32 w-24"
                       />
                       <div className="text-white flex flex-col gap-1 tracking-wider">
-                        <div className="flex justify-start items-center gap-3">
+                        <div className="flex justify-center items-center gap-3">
                           <p className="lg:text-2xl text-xl font-bold">
                             {BasicMatch?.character_name}
                           </p>
@@ -222,18 +236,18 @@ function Member() {
                               부마스터
                             </span>
                           ) : null}
-                          
                         </div>
                         <p className="text-sm">
                           Lv.{BasicMatch?.character_level}
-                          <span className="text-xs text-gray-300">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;인기도 {Pop?.popularity.toLocaleString()}</span>
+                          <span className="text-xs text-gray-300">
+                            &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;인기도{" "}
+                            {Pop?.popularity.toLocaleString()}
+                          </span>
                         </p>
-                        <p className="text-sm">
-                          {BasicMatch?.character_class}
-                        </p>
+                        <p className="text-sm">{BasicMatch?.character_class}</p>
                       </div>
                     </div>
-                    <MemberInfo ocid={OcidforPop?.ocid}/>
+                    <MemberInfo />
                   </motion.div>
                 </>
               ) : null}
