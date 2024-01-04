@@ -85,6 +85,18 @@ export const getAbility = async(ocid?: string) => {
   .catch((error) => console.log(error));
 };
 //장착 장비 정보
+export const getEquipment = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/item-equipment?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //장착 심볼 정보
 //장착 안드로이드 정보
 //장착 펫 정보

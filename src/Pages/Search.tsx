@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
 import { getBasic, getOCID } from "../api";
 import { Helmet } from "react-helmet";
+import { IMemberBasic, IOcid } from '../interfaces';
 
 function Search() {
   const [characterName, set_characterName] = useState();
@@ -19,14 +20,16 @@ function Search() {
     set_characterName(data.ocid);
     reset();
   }
-  const { data: ociddData } = useQuery(["my_ocid", characterName],
+  //ocid불러오기
+  const { data: ociddData } = useQuery<IOcid>(["my_ocid", characterName],
     () => getOCID(characterName),
     {
       staleTime: Infinity,
       enabled: !!characterName
     }
   );
-  const { isLoading, data: basicData } = useQuery(["my_basic", ociddData?.ocid],
+  //캐릭터 기본 정보 불러오기
+  const { isLoading, data: basicData } = useQuery<IMemberBasic>(["my_basic", ociddData?.ocid],
     () => getBasic(ociddData?.ocid),
     {
       staleTime: Infinity,

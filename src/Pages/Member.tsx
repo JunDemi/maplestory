@@ -9,7 +9,7 @@ import {
   yesterday,
   getPop,
 } from "../api";
-import { motion, AnimatePresence, transform, delay } from "framer-motion";
+import { motion, AnimatePresence} from "framer-motion";
 import { cls } from "../cssUtils";
 import MemberStat from "../components/MemberStat";
 import { useRecoilState } from "recoil";
@@ -17,13 +17,7 @@ import { ocidState } from "../atom";
 import MemberItem from "../components/MemberItem";
 import MemberCash from "../components/MemberCash";
 import MemberHexa from "../components/MemberHexa";
-
-interface IMemberBasic {
-  character_name: string;
-  character_level: number;
-  character_class: string;
-  character_image: string;
-}
+import { IMemberBasic, IOcid } from "../interfaces";
 
 function Member() {
   const [isCardClicked, set_isCardClicked] = useState(false); //카드가 클릭되었는지 아닌지의 상태
@@ -196,7 +190,7 @@ function Member() {
                   />
                   <motion.div
                     layoutId={matchedName}
-                    className="fixed top-[12dvh] lg:w-[55vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                    className="fixed top-[12dvh] lg:w-[75vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
                       style={{
@@ -210,7 +204,7 @@ function Member() {
                         className="lg:w-32 w-24"
                       />
                       <div className="text-white flex flex-col gap-1 tracking-wider">
-                        <div className="flex justify-center items-center gap-3">
+                        <div className="flex justify-start items-center gap-3">
                           <p className="lg:text-2xl text-xl font-bold">
                             {BasicMatch?.character_name}
                           </p>
@@ -251,27 +245,27 @@ function Member() {
                         <p className="text-sm">{BasicMatch?.character_class}</p>
                       </div>
                     </div>
-                    <div className="w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500">
+                    <div className="w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 font-bold">
                       <span
-                        className={cls(infoType === "stat" ? "text-blue-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(infoType === "stat" ? "text-blue-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
                         onClick={() => selectInfo("stat")}
                       >
                         스탯
                       </span>
                       <span
-                        className={cls(infoType === "item" ? "text-green-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(infoType === "item" ? "text-green-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
                         onClick={() => selectInfo("item")}
                       >
                         장비
                       </span>
                       <span
-                        className={cls(infoType === "cash" ? "text-orange-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(infoType === "cash" ? "text-orange-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
                         onClick={() => selectInfo("cash")}
                       >
                         캐시
                       </span>
                       <span
-                        className={cls(infoType === "hexa" ? "text-purple-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(infoType === "hexa" ? "text-purple-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
                         onClick={() => selectInfo("hexa")}
                       >
                         HEXA
