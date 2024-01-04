@@ -64,7 +64,7 @@ function Member() {
   getmemberBasic.map((query) => memberArray2.push(query.data));
   memberArray2.sort((a, b) => b.character_level - a.character_level);
   //길드 관리자들은 배열에 첫 부분으로 이동
-  const adminName = ["해녀데스", "랸냐", "불협화음", "활맥", "키단", "볼짝"];
+  const adminName = ["해녀데스", "랸냐", "활맥", "불협화음", "키단", "볼짝"];
   adminName.forEach((name) => {
     const indexAdmin = memberArray2.findIndex(
       (item) => item?.character_name === name
@@ -192,7 +192,7 @@ function Member() {
                         className="lg:w-32 w-24"
                       />
                       <div className="text-white flex flex-col gap-1 tracking-wider">
-                        <div className="flex justify-center items-center gap-3">
+                        <div className="flex justify-start items-center gap-3">
                           <p className="lg:text-2xl text-xl font-bold">
                             {BasicMatch?.character_name}
                           </p>
@@ -222,10 +222,11 @@ function Member() {
                               부마스터
                             </span>
                           ) : null}
-                          <span className="text-xs text-gray-300">|&nbsp;&nbsp;&nbsp;인기도 {Pop?.popularity.toLocaleString()}</span>
+                          
                         </div>
                         <p className="text-sm">
                           Lv.{BasicMatch?.character_level}
+                          <span className="text-xs text-gray-300">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;인기도 {Pop?.popularity.toLocaleString()}</span>
                         </p>
                         <p className="text-sm">
                           {BasicMatch?.character_class}
