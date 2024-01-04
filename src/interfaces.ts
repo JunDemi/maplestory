@@ -21,7 +21,7 @@ export interface IEquipment {
     item_equipment: [
       {
         item_equipment_part: string;
-        equipment_slot: string;
+        item_equipment_slot: string;
         item_name: string;
         item_icon: string;
         item_description: string;
@@ -368,7 +368,7 @@ export interface IEquipment {
           speed: string;
           jump: string
         },
-        starforce: string;
+        starforce: number;
         starforce_scroll_flag: string;
         item_starforce_option: {
           str: string;

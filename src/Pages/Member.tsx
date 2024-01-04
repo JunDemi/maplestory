@@ -10,14 +10,14 @@ import {
   getPop,
 } from "../api";
 import { motion, AnimatePresence} from "framer-motion";
-import { cls } from "../cssUtils";
+import { cls } from "../Utils";
 import MemberStat from "../components/MemberStat";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
 import MemberItem from "../components/MemberItem";
 import MemberCash from "../components/MemberCash";
 import MemberHexa from "../components/MemberHexa";
-import { IMemberBasic, IOcid } from "../interfaces";
+import { IMemberBasic } from "../interfaces";
 
 function Member() {
   const [isCardClicked, set_isCardClicked] = useState(false); //카드가 클릭되었는지 아닌지의 상태
@@ -245,7 +245,7 @@ function Member() {
                         <p className="text-sm">{BasicMatch?.character_class}</p>
                       </div>
                     </div>
-                    <div className="w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 font-bold">
+                    <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 font-bold">
                       <span
                         className={cls(infoType === "stat" ? "text-blue-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
                         onClick={() => selectInfo("stat")}

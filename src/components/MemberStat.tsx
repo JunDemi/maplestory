@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getAbility, getDojang, getStat, getUnion } from "../api";
-import { cls } from "../cssUtils";
+import { cls } from "../Utils";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
 
