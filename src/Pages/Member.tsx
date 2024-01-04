@@ -9,11 +9,14 @@ import {
   yesterday,
   getPop,
 } from "../api";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, transform, delay } from "framer-motion";
 import { cls } from "../cssUtils";
-import MemberInfo from "../components/MemberInfo";
+import MemberStat from "../components/MemberStat";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
+import MemberItem from "../components/MemberItem";
+import MemberCash from "../components/MemberCash";
+import MemberHexa from "../components/MemberHexa";
 
 interface IMemberBasic {
   character_name: string;
@@ -23,9 +26,12 @@ interface IMemberBasic {
 }
 
 function Member() {
-  const [nameMatch, set_nameMatch] = useState(false);
-  const [matchedName, set_matchedName] = useState<string>("");
-  const [select_ocid, set_select_ocid] = useRecoilState<string>(ocidState);
+  const [isCardClicked, set_isCardClicked] = useState(false); //카드가 클릭되었는지 아닌지의 상태
+  const [matchedName, set_matchedName] = useState<string>(""); //클릭된 카드 멤버의 이름 상태
+  const [select_ocid, set_select_ocid] = useRecoilState<string>(ocidState); //클릭된 카드 멤버의 ocid 전역 상태
+  const [infoType, set_infoType] = useState<"stat" | "item" | "cash" | "hexa">(
+    "stat"
+  ); //정보 조회 타입 상태
 
   //길드 멤버 이름 불러오기
   const { isLoading, data: guildBasic } = useQuery(
@@ -48,12 +54,6 @@ function Member() {
       queryFn: () => getOCID(data),
       staleTime: Infinity,
       enabled: !!data,
-      // onError: (error) => {
-      //   if (error.response && error.response.status === 400) {
-      //     return null;
-      //   }
-      //   throw error;
-      // },
     }))
   );
   //불러온 ocid중 불러오지 못한 값들은 배열에서 제거
@@ -88,12 +88,13 @@ function Member() {
   //캐릭터 카드 클릭 이벤트
   const onCardClick = (charater_name: string) => {
     set_matchedName(charater_name);
-    set_nameMatch(true);
+    set_isCardClicked(true);
   };
   //카드 클릭 시 나타나는 김고 흐린 배경 클릭 시
   const onOverlayClicked = () => {
     set_matchedName("");
-    set_nameMatch(false);
+    set_isCardClicked(false);
+    set_infoType("stat");
   };
   //클릭한 카드 멤버의 이름과 일치한 배열 내의 이름을 뽑음
   const BasicMatch = memberArray2.find(
@@ -105,7 +106,7 @@ function Member() {
     () => getOCID(matchedName),
     {
       staleTime: Infinity,
-      enabled: !!nameMatch,
+      enabled: !!isCardClicked,
     }
   );
   //클릭한 카드 멤버의 Ocid를 RecoilState에 저장
@@ -121,6 +122,9 @@ function Member() {
       enabled: !!OcidforPop?.ocid,
     }
   );
+  const selectInfo = (info: "stat" | "item" | "cash" | "hexa") => {
+    set_infoType(info);
+  };
   return (
     <>
       <Helmet>
@@ -181,7 +185,7 @@ function Member() {
               </div>
             </AnimatePresence>
             <AnimatePresence>
-              {nameMatch ? (
+              {isCardClicked ? (
                 <>
                   <motion.div
                     className="fixed top-0 w-full h-full bg-[rgba(0,0,0,0.5)] z-20 cursor-pointer"
@@ -192,7 +196,7 @@ function Member() {
                   />
                   <motion.div
                     layoutId={matchedName}
-                    className="fixed top-[12dvh] lg:w-[50vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                    className="fixed top-[12dvh] lg:w-[55vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
                       style={{
@@ -247,7 +251,41 @@ function Member() {
                         <p className="text-sm">{BasicMatch?.character_class}</p>
                       </div>
                     </div>
-                    <MemberInfo />
+                    <div className="w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500">
+                      <span
+                        className={cls(infoType === "stat" ? "text-blue-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        onClick={() => selectInfo("stat")}
+                      >
+                        스탯
+                      </span>
+                      <span
+                        className={cls(infoType === "item" ? "text-green-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        onClick={() => selectInfo("item")}
+                      >
+                        장비
+                      </span>
+                      <span
+                        className={cls(infoType === "cash" ? "text-orange-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        onClick={() => selectInfo("cash")}
+                      >
+                        캐시
+                      </span>
+                      <span
+                        className={cls(infoType === "hexa" ? "text-purple-500 font-bold" : "", "hover:bg-gray-200 transition py-4")}
+                        onClick={() => selectInfo("hexa")}
+                      >
+                        HEXA
+                      </span>
+                    </div>
+                    {infoType === "stat" ? (
+                      <MemberStat />
+                    ) : infoType === "item" ? (
+                      <MemberItem />
+                    ) : infoType === "cash" ? (
+                      <MemberCash />
+                    ) : infoType === "hexa" ? (
+                      <MemberHexa />
+                    ) : null}
                   </motion.div>
                 </>
               ) : null}

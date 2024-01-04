@@ -32,7 +32,7 @@ interface IUnion {
   union_level: number;
   union_grade: string;
 }
-function MemberInfo() {
+function MemberStat() {
   //RecoilState불러오기
   const [ocid] = useRecoilState(ocidState);
   //무릉도장 기록 시간이 없을 경우
@@ -88,7 +88,7 @@ function MemberInfo() {
   return (
     <>
       {ocid ? (
-        <div className="w-full overflow-y-scroll p-8 space-y-4 font-bold">
+        <div className="w-full overflow-y-scroll py-5 px-8 space-y-4 font-bold">
           <div className="w-full">
             <p className="text-gray-500 text-xs">
               {statData?.final_stat[42].stat_name}
@@ -204,4 +204,4 @@ function MemberInfo() {
     </>
   );
 }
-export default MemberInfo;
+export default MemberStat;
