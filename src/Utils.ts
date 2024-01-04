@@ -216,19 +216,19 @@ export const optionFormat = (option: string) => {
     case "캐릭터 기준 9레벨 당 STR : +2":
       return "9렙당 STR+2";
     case "캐릭터 기준 9레벨 당 STR : +1":
-      return "9렙당 STR+2";
+      return "9렙당 STR+1";
     case "캐릭터 기준 9레벨 당 DEX : +2":
       return "9렙당 DEX+2";
     case "캐릭터 기준 9레벨 당 DEX : +1":
-      return "9렙당 DEX+2";
+      return "9렙당 DEX+1";
     case "캐릭터 기준 9레벨 당 INT : +2":
       return "9렙당 INT+2";
     case "캐릭터 기준 9레벨 당 INT : +1":
-      return "9렙당 INT+2";
+      return "9렙당 INT+1";
     case "캐릭터 기준 9레벨 당 LUK : +2":
       return "9렙당 LUK+2";
     case "캐릭터 기준 9레벨 당 LUK : +1":
-      return "9렙당 LUK+2";
+      return "9렙당 LUK+1";
     case "크리티컬 데미지 : +8%":
       return "크뎀 +8%";
     case "크리티컬 데미지 : +3%":
