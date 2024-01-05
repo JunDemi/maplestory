@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useAnimation, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { Fade as Hamburger }from 'hamburger-react';
 
 const navVarient = {
     top: {
@@ -32,9 +33,6 @@ function Header() {
     const navAnimation = useAnimation();
     const buttonAnimation = useAnimation();
     const [toggleMenu, set_toggleMenu] = useState(false);
-    const mobileMenu = () => {
-        set_toggleMenu((prev) => !prev);
-    };
 
 
     const scrollToTop = () => {
@@ -60,7 +58,7 @@ function Header() {
             <motion.nav
                 variants={navVarient}
                 animate={navAnimation}
-                transition={{ duration: 0.1 }}
+                transition={{ duration: 0.2 }}
                 initial={"top"}
                 className='fixed top-0 w-full z-10 flex flex-col'
             >
@@ -90,42 +88,13 @@ function Header() {
                         </Link>
                     </div>
 
-                    <button className="text-white lg:hidden block" onClick={mobileMenu}>
-                        {toggleMenu ? (
-                            <motion.svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-8 h-8"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </motion.svg>
-                        ) : (
-                            <motion.svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth="1.5"
-                                stroke="currentColor"
-                                className="w-8 h-8"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                                />
-                            </motion.svg>
-                        )}
+                    <button className="text-white lg:hidden block">
+                        <Hamburger color="#ffffff" toggled={toggleMenu} rounded toggle={set_toggleMenu}/>
                     </button>
                 </div>
-                {toggleMenu ? (
                     <motion.div
+                        initial={{opacity:0}}
+                        animate={toggleMenu ? {opacity: 1, display: "flex"} : {opacity:0, transitionEnd:{display:"none"}}}
                         style={{ background: "linear-gradient(rgba(0, 0, 0, 0), rgba(12,16,25,0.9))" }}
                         className="text-white lg:hidden flex flex-col text-xs justify-start items-end px-10 gap-10 font-thin py-10"
                     >
@@ -146,7 +115,6 @@ function Header() {
                         </Link>
 
                     </motion.div>
-                ) : null}
             </motion.nav>
             <motion.button
                 onClick={scrollToTop}
