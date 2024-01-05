@@ -427,18 +427,18 @@ export interface ISymbol {
   symbol: ISybolList[];
 }
 interface ISybolList {
-    symbol_name: string;
-    symbol_icon: string;
-    symbol_description: string;
-    symbol_force: number;
-    symbol_level: number;
-    symbol_str: number;
-    symbol_dex: number;
-    symbol_int: number;
-    symbol_luk: number;
-    symbol_hp: number;
-    symbol_growth_count: number;
-    symbol_require_growth_count: number;
+  symbol_name: string;
+  symbol_icon: string;
+  symbol_description: string;
+  symbol_force: number;
+  symbol_level: number;
+  symbol_str: number;
+  symbol_dex: number;
+  symbol_int: number;
+  symbol_luk: number;
+  symbol_hp: number;
+  symbol_growth_count: number;
+  symbol_require_growth_count: number;
 }
 //장착 캐시 장비
 export interface ICash {
@@ -450,7 +450,7 @@ interface ICashItems {
   cash_item_name: string;
   cash_item_icon: string;
   cash_item_description: string;
-  cash_item_option: [],
+  cash_item_option: [];
   date_expire: string;
   date_option_expire: string;
   cash_item_label: string;
@@ -463,13 +463,38 @@ export interface IBeauty {
     hair_name: string;
     base_color: string;
     mix_color: string; //null
-    mix_rate: number //0
-  },
+    mix_rate: number; //0
+  };
   character_face: {
     face_name: string;
     base_color: string;
     mix_color: string; //null
     mix_rate: string; //0
-  },
+  };
   character_skin_name: string;
+}
+//6차 스킬
+export interface IHexa {
+  character_skill_grade: string;
+  character_skill: {
+    skill_name: string;
+    skill_description: string;
+    skill_level: number;
+    skill_effect: string;
+    skill_icon: string;
+  }[];
+}
+//Hexa스탯
+export interface IHexaStat {
+  character_class: string;
+  character_hexa_stat_core: {
+    slot_id: number;
+    main_stat_name: string;
+    sub_stat_name_1: string;
+    sub_stat_name_2: string;
+    main_stat_level: number;
+    sub_stat_level_1: number;
+    sub_stat_level_2: number;
+    stat_grade: number;
+  }[];
 }

@@ -21,7 +21,7 @@ export const myFirstStat = (job?: string) => {
     case "스트라이커":
     case "은월":
     case "아크":
-      return "STR"
+      return "STR";
     case "보우마스터":
     case "신궁":
     case "패스파인더":
@@ -31,7 +31,7 @@ export const myFirstStat = (job?: string) => {
     case "메카닉":
     case "캡틴":
     case "엔젤릭버스터":
-      return "DEX"
+      return "DEX";
     case "아크메이지(썬,콜)":
     case "아크메이지(불,독)":
     case "비숍":
@@ -42,7 +42,7 @@ export const myFirstStat = (job?: string) => {
     case "키네시스":
     case "일리움":
     case "라라":
-      return "INT"
+      return "INT";
     case "나이트로드":
     case "섀도어":
     case "듀얼블레이더":
@@ -51,11 +51,11 @@ export const myFirstStat = (job?: string) => {
     case "카데나":
     case "호영":
     case "칼리":
-      return "LUK"
+      return "LUK";
     case "데몬어벤져":
-      return "HP"
+      return "HP";
     case "제논":
-      return "LUK" // &&"STR"&&"DEX"
+      return "LUK"; // &&"STR"&&"DEX"
   }
 };
 //잠재옵션 내용이 너무 긴 옵션은 글자를 줄이도록 포맷
@@ -391,6 +391,369 @@ export const optionCalc = (
             2 +
           "급"
         ); //All Stat
+    }
+  }
+};
+//Hexa 스탯 레벨 계산
+export const hexaStatLevel = (
+  job?: string,
+  index?: string,
+  statName?: string,
+  statLevel?: number
+) => {
+  if (index === "main") {
+    switch (statName) {
+      case "크리티컬 데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel * 0.35 + "%";
+          case 5:
+            return "2.1%";
+          case 6:
+            return "2.8%";
+          case 7:
+            return "3.5%";
+          case 8:
+            return "4.55%";
+          case 9:
+            return "5.6%";
+          case 10:
+            return "7%";
+          default:
+            return "";
+        }
+      case "보스 데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel + "%";
+          case 5:
+            return "6%";
+          case 6:
+            return "8%";
+          case 7:
+            return "10%";
+          case 8:
+            return "13%";
+          case 9:
+            return "16%";
+          case 10:
+            return "20%";
+          default:
+            return "";
+        }
+      case "방어율 무시 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel + "%";
+          case 5:
+            return "6%";
+          case 6:
+            return "8%";
+          case 7:
+            return "10%";
+          case 8:
+            return "13%";
+          case 9:
+            return "16%";
+          case 10:
+            return "20%";
+          default:
+            return "";
+        }
+      case "데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel * 0.75 + "%";
+          case 5:
+            return "4.5%";
+          case 6:
+            return "6%";
+          case 7:
+            return "7.5%";
+          case 8:
+            return "9.75%";
+          case 9:
+            return "12%";
+          case 10:
+            return "15%";
+          default:
+            return "";
+        }
+      case "공격력 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel * 5;
+          case 5:
+            return 30;
+          case 6:
+            return 40;
+          case 7:
+            return 50;
+          case 8:
+            return 65;
+          case 9:
+            return 80;
+          case 10:
+            return 100;
+          default:
+            return "";
+        }
+      case "마력 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+            return statLevel * 5;
+          case 5:
+            return 30;
+          case 6:
+            return 40;
+          case 7:
+            return 50;
+          case 8:
+            return 65;
+          case 9:
+            return 80;
+          case 10:
+            return 100;
+          default:
+            return "";
+        }
+      case "주력 스탯 증가":
+        switch (job) {
+          case "데몬어벤져":
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+                return statLevel * 2100;
+              case 5:
+                return 12600;
+              case 6:
+                return 16800;
+              case 7:
+                return 21000;
+              case 8:
+                return 27300;
+              case 9:
+                return 33600;
+              case 10:
+                return 42000;
+              default:
+                return "";
+            }
+          case "제논":
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+                return statLevel * 48;
+              case 5:
+                return 288;
+              case 6:
+                return 384;
+              case 7:
+                return 480;
+              case 8:
+                return 624;
+              case 9:
+                return 768;
+              case 10:
+                return 960;
+              default:
+                return "";
+            }
+          default:
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+                return statLevel * 100;
+              case 5:
+                return 600;
+              case 6:
+                return 800;
+              case 7:
+                return 1000;
+              case 8:
+                return 1300;
+              case 9:
+                return 1600;
+              case 10:
+                return 2000;
+              default:
+                return "";
+            }
+        }
+    }
+  } else {
+    switch (statName) {
+      case "크리티컬 데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel * 0.35 + "%";
+          default:
+            return "";
+        }
+      case "보스 데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel + "%";
+          default:
+            return "";
+        }
+      case "방어율 무시 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel + "%";
+          default:
+            return "";
+        }
+      case "데미지 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel * 0.75 + "%";
+          default:
+            return "";
+        }
+      case "공격력 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel * 5;
+          default:
+            return "";
+        }
+      case "마력 증가":
+        switch (statLevel) {
+          case 1:
+          case 2:
+          case 3:
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          case 9:
+          case 10:
+            return statLevel * 5;
+          default:
+            return "";
+        }
+      case "주력 스탯 증가":
+        switch (job) {
+          case "데몬어벤져":
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 6:
+              case 7:
+              case 8:
+              case 9:
+              case 10:
+                return statLevel * 2100;
+              default:
+                return "";
+            }
+          case "제논":
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 6:
+              case 7:
+              case 8:
+              case 9:
+              case 10:
+                return statLevel * 48;
+              default:
+                return "";
+            }
+          default:
+            switch (statLevel) {
+              case 1:
+              case 2:
+              case 3:
+              case 4:
+              case 5:
+              case 6:
+              case 7:
+              case 8:
+              case 9:
+              case 10:
+                return statLevel * 100;
+              default:
+                return "";
+            }
+        }
     }
   }
 };

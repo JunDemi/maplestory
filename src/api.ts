@@ -143,6 +143,31 @@ export const getBeauty = async(ocid?: string) => {
 //장착 링크 스킬 정보
 //5차 스킬 정보
 //6차 스킬 정보
+export const getHexa = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/skill?ocid=${ocid}&date=${yesterday}&character_skill_grade=6`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
+//HEXA 스탯 정보
+export const getHexaStat = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/hexamatrix-stat?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //무릉도장 정보
 export const getDojang = async(ocid?: string) => {
   return await fetch(`${BASE_URL}/character/dojang?ocid=${ocid}&date=${yesterday}`, {
