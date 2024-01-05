@@ -64,7 +64,7 @@ function MemberStat() {
       {!isLoading ? (
         <>
           {ocid ? (
-            <div className="w-full overflow-y-scroll py-5 px-8 space-y-4 font-bold">
+            <div className="w-full overflow-y-scroll py-5 px-8 space-y-4 ">
               <div className="w-full">
                 <p className="text-gray-500 text-xs">
                   {statData?.final_stat[42].stat_name}

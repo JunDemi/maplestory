@@ -181,7 +181,7 @@ function MemberItem() {
                 </div>
               ) : null}
 
-              <div className="w-full lg:col-span-3 grid lg:grid-cols-2 grid-cols-1 gap-4 text-[0.6rem] text-gray-600 font-bold">
+              <div className="w-full lg:col-span-3 grid lg:grid-cols-2 grid-cols-1 gap-4 text-[0.6rem] text-gray-600 ">
                 <div className="bg-white border border-gray-300 rounded-md grid lg:grid-cols-6 grid-cols-3 gap-2 p-3">
                   <h1 className="lg:col-span-6 col-span-3">아케인심볼</h1>
                   {sybolData?.symbol.slice(0, 6).map((data, number) => (

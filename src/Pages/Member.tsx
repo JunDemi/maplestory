@@ -205,7 +205,7 @@ function Member() {
                       />
                       <div className="text-white flex flex-col gap-1 tracking-wider">
                         <div className="flex justify-start items-center gap-3">
-                          <p className="lg:text-2xl text-xl font-bold">
+                          <p className="lg:text-2xl text-xl ">
                             {BasicMatch?.character_name}
                           </p>
 
@@ -245,7 +245,7 @@ function Member() {
                         <p className="text-sm">{BasicMatch?.character_class}</p>
                       </div>
                     </div>
-                    <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 font-bold">
+                    <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 ">
                       <span
                         className={cls(
                           infoType === "stat"

@@ -35,7 +35,7 @@ function MemberHexa() {
           {!isLoading ? (
             <>
               {ocid ? (
-                <div className="flex lg:flex-row flex-col lg:justify-between justify-start items-start overflow-y-scroll w-full p-5 gap-3 font-bold">
+                <div className="flex lg:flex-row flex-col lg:justify-between justify-start items-start overflow-y-scroll w-full p-5 gap-3 ">
                   <div className="p-3 border border-gray-300 rounded-lg lg:w-1/3 w-full">
                     <span className="text-sm text-white bg-purple-800 px-2 py-1 rounded-full">
                       HEXA STATS
