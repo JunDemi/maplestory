@@ -36,12 +36,12 @@ function MemberHexa() {
             <>
               {ocid ? (
                 <div className="flex lg:flex-row flex-col lg:justify-between justify-start items-start overflow-y-scroll w-full p-5 gap-3 font-bold">
-                  <div className="p-3 border border-gray-300 rounded-lg">
+                  <div className="p-3 border border-gray-300 rounded-lg lg:w-1/3 w-full">
                     <span className="text-sm text-white bg-purple-800 px-2 py-1 rounded-full">
                       HEXA STATS
                     </span>
                     {hexaStatData?.character_hexa_stat_core.length === 0 ? (
-                      <p className="text-xs mt-5">헥사 스탯이 없습니다</p>
+                      <p className="text-xs mt-5 text-gray-500 w-full text-center">헥사 스탯이 없습니다.</p>
                     ) : (
                       <div className="flex flex-col gap-5 items-start justify-center py-5 text-xs">
                         {hexaStat?.main_stat_level !== 0 ? (
@@ -125,11 +125,29 @@ function MemberHexa() {
               ) : null}
             </>
           ) : (
-            "로딩중..."
+            <div className="w-full h-full flex justify-center items-center">
+              <img src="/loading.gif" alt="" className="w-[20vw]" />
+            </div>
           )}
         </>
       ) : (
-        "6차 전직 안함"
+        <div className="w-full h-full flex justify-center items-center text-gray-500 gap-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="lg:w-8 lg:h-8 w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15.182 16.318A4.486 4.486 0 0 0 12.016 15a4.486 4.486 0 0 0-3.198 1.318M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"
+            />
+          </svg>
+          <p className="lg:text-xl text-sm">6차 전직을 하지 않은 캐릭터입니다.</p>
+        </div>
       )}
     </>
   );

@@ -409,7 +409,7 @@ export const hexaStatLevel = (
           case 2:
           case 3:
           case 4:
-            return statLevel * 0.35 + "%";
+            return (statLevel * 0.35).toFixed(2) + "%";
           case 5:
             return "2.1%";
           case 6:
@@ -475,7 +475,7 @@ export const hexaStatLevel = (
           case 2:
           case 3:
           case 4:
-            return statLevel * 0.75 + "%";
+            return (statLevel * 0.75).toFixed(2) + "%";
           case 5:
             return "4.5%";
           case 6:
@@ -543,19 +543,19 @@ export const hexaStatLevel = (
               case 2:
               case 3:
               case 4:
-                return statLevel * 2100;
+                return (statLevel * 2100).toLocaleString();
               case 5:
-                return 12600;
+                return (12600).toLocaleString();
               case 6:
-                return 16800;
+                return(16800).toLocaleString();
               case 7:
-                return 21000;
+                return (21000).toLocaleString();
               case 8:
-                return 27300;
+                return (27300).toLocaleString();
               case 9:
-                return 33600;
+                return (33600).toLocaleString();
               case 10:
-                return 42000;
+                return (42000).toLocaleString();
               default:
                 return "";
             }
@@ -593,13 +593,13 @@ export const hexaStatLevel = (
               case 6:
                 return 800;
               case 7:
-                return 1000;
+                return (1000).toLocaleString();
               case 8:
-                return 1300;
+                return (1300).toLocaleString();
               case 9:
-                return 1600;
+                return (1600).toLocaleString();
               case 10:
-                return 2000;
+                return (2000).toLocaleString();
               default:
                 return "";
             }
@@ -619,7 +619,7 @@ export const hexaStatLevel = (
           case 8:
           case 9:
           case 10:
-            return statLevel * 0.35 + "%";
+            return (statLevel * 0.35).toFixed(2) + "%";
           default:
             return "";
         }
@@ -667,7 +667,7 @@ export const hexaStatLevel = (
           case 8:
           case 9:
           case 10:
-            return statLevel * 0.75 + "%";
+            return (statLevel * 0.75).toFixed + "%";
           default:
             return "";
         }
@@ -717,7 +717,7 @@ export const hexaStatLevel = (
               case 8:
               case 9:
               case 10:
-                return statLevel * 2100;
+                return (statLevel * 2100).toLocaleString();
               default:
                 return "";
             }
@@ -749,7 +749,7 @@ export const hexaStatLevel = (
               case 8:
               case 9:
               case 10:
-                return statLevel * 100;
+                return (statLevel * 100).toLocaleString();
               default:
                 return "";
             }

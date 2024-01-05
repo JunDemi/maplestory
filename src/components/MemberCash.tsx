@@ -143,7 +143,9 @@ function MemberCash() {
           ) : null}
         </>
       ) : (
-        "로딩..."
+        <div className="w-full h-full flex justify-center items-center">
+          <img src="/loading.gif" alt="" className="w-[20vw]"/>
+        </div>
       )}
     </>
   );

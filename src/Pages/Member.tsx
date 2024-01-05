@@ -9,7 +9,7 @@ import {
   yesterday,
   getPop,
 } from "../api";
-import { motion, AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { cls } from "../Utils";
 import MemberStat from "../components/MemberStat";
 import { useRecoilState } from "recoil";
@@ -139,12 +139,12 @@ function Member() {
           "Loading..."
         ) : (
           <>
-            <h2 className="text-2xl mt-10">
-              <p className="text-sm">{yesterday} 기준</p>
-              길드원 수: {memberArray2.length}명
-            </h2>
             <AnimatePresence>
               <div className="grid lg:grid-cols-4 grid-cols-1 my-10 gap-6">
+                <div className="text-xl lg:col-span-4 flex flex-col justify-center items-start gap-1">
+                  <p className="text-xs text-gray-500 tracking-tight">기준 접속일: {yesterday}</p>
+                  <span className="bg-blue-800 px-4 py-1 rounded-full text-white">{memberArray2.length}명 활동중</span>
+                </div>
                 {memberArray2.map((data, number) => (
                   <motion.div
                     layoutId={data?.character_name}
@@ -247,25 +247,45 @@ function Member() {
                     </div>
                     <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 font-bold">
                       <span
-                        className={cls(infoType === "stat" ? "text-blue-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(
+                          infoType === "stat"
+                            ? "text-blue-500 bg-gray-200"
+                            : "",
+                          "hover:bg-gray-200 transition py-4"
+                        )}
                         onClick={() => selectInfo("stat")}
                       >
                         스탯
                       </span>
                       <span
-                        className={cls(infoType === "item" ? "text-green-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(
+                          infoType === "item"
+                            ? "text-green-500 bg-gray-200"
+                            : "",
+                          "hover:bg-gray-200 transition py-4"
+                        )}
                         onClick={() => selectInfo("item")}
                       >
                         장비
                       </span>
                       <span
-                        className={cls(infoType === "cash" ? "text-orange-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(
+                          infoType === "cash"
+                            ? "text-orange-500 bg-gray-200"
+                            : "",
+                          "hover:bg-gray-200 transition py-4"
+                        )}
                         onClick={() => selectInfo("cash")}
                       >
                         캐시
                       </span>
                       <span
-                        className={cls(infoType === "hexa" ? "text-purple-500 bg-gray-200" : "", "hover:bg-gray-200 transition py-4")}
+                        className={cls(
+                          infoType === "hexa"
+                            ? "text-purple-500 bg-gray-200"
+                            : "",
+                          "hover:bg-gray-200 transition py-4"
+                        )}
                         onClick={() => selectInfo("hexa")}
                       >
                         HEXA
