@@ -97,87 +97,90 @@ function MemberItem() {
                   </div>
                   {data.potential_option_1 ? (
                     <div className="h-1/2 border-t border-gray-300 w-full grid grid-cols-2">
-                        <div className="flex justify-center items-center gap-5 p-2 border-r border-gray-300">
-                          <h1 className="text-[0.7rem] text-gray-500">잠재</h1>
-                          <div
-                            className={cls(
-                              data.potential_option_grade === "레전드리"
-                                ? "text-green-500"
-                                : data.potential_option_grade === "유니크"
-                                ? "text-yellow-500"
-                                : data.potential_option_grade === "에픽"
-                                ? "text-purple-500"
-                                : data.potential_option_grade === "레어"
-                                ? "text-blue-500"
-                                : "",
-                              "text-[0.6rem]"
-                            )}
-                          >
-                            <p>{optionFormat(data.potential_option_1)}</p>
-                            <p>{optionFormat(data.potential_option_2)}</p>
-                            <p>{optionFormat(data.potential_option_3)}</p>
-                          </div>
-                        </div>
-                        <div className="flex justify-center items-center gap-5 p-2">
-                          {data.additional_potential_option_1 ? (
-                            <>
-                              <h1 className="text-[0.7rem] text-gray-500">
-                                에디
-                              </h1>
-                              <div
-                                className={cls(
-                                  data.additional_potential_option_grade ===
-                                    "레전드리"
-                                    ? "text-green-500"
-                                    : data.additional_potential_option_grade ===
-                                      "유니크"
-                                    ? "text-yellow-500"
-                                    : data.additional_potential_option_grade ===
-                                      "에픽"
-                                    ? "text-purple-500"
-                                    : data.additional_potential_option_grade ===
-                                      "레어"
-                                    ? "text-blue-500"
-                                    : "",
-                                  "text-[0.6rem]"
-                                )}
-                              >
-                                <p>
-                                  {optionFormat(
-                                    data.additional_potential_option_1
-                                  )}
-                                </p>
-                                <p>
-                                  {optionFormat(
-                                    data.additional_potential_option_2
-                                  )}
-                                </p>
-                                <p>
-                                  {optionFormat(
-                                    data.additional_potential_option_3
-                                  )}
-                                </p>
-                              </div>
-                            </>
-                          ) : null}
+                      <div className="flex justify-center items-center gap-5 p-2 border-r border-gray-300">
+                        <h1 className="text-[0.7rem] text-gray-500">잠재</h1>
+                        <div
+                          className={cls(
+                            data.potential_option_grade === "레전드리"
+                              ? "text-green-500"
+                              : data.potential_option_grade === "유니크"
+                              ? "text-yellow-500"
+                              : data.potential_option_grade === "에픽"
+                              ? "text-purple-500"
+                              : data.potential_option_grade === "레어"
+                              ? "text-blue-500"
+                              : "",
+                            "text-[0.6rem]"
+                          )}
+                        >
+                          <p>{optionFormat(data.potential_option_1)}</p>
+                          <p>{optionFormat(data.potential_option_2)}</p>
+                          <p>{optionFormat(data.potential_option_3)}</p>
                         </div>
                       </div>
+                      <div className="flex justify-center items-center gap-5 p-2">
+                        {data.additional_potential_option_1 ? (
+                          <>
+                            <h1 className="text-[0.7rem] text-gray-500">
+                              에디
+                            </h1>
+                            <div
+                              className={cls(
+                                data.additional_potential_option_grade ===
+                                  "레전드리"
+                                  ? "text-green-500"
+                                  : data.additional_potential_option_grade ===
+                                    "유니크"
+                                  ? "text-yellow-500"
+                                  : data.additional_potential_option_grade ===
+                                    "에픽"
+                                  ? "text-purple-500"
+                                  : data.additional_potential_option_grade ===
+                                    "레어"
+                                  ? "text-blue-500"
+                                  : "",
+                                "text-[0.6rem]"
+                              )}
+                            >
+                              <p>
+                                {optionFormat(
+                                  data.additional_potential_option_1
+                                )}
+                              </p>
+                              <p>
+                                {optionFormat(
+                                  data.additional_potential_option_2
+                                )}
+                              </p>
+                              <p>
+                                {optionFormat(
+                                  data.additional_potential_option_3
+                                )}
+                              </p>
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
                   ) : null}
                 </div>
               ))}
-              <div className="border border-gray-300 rounded-md bg-white text-xs p-3 flex justify-start items-center">
-                <div className="flex justify-start items-center gap-5">
-                  <img
-                    src={equipmentData?.title.title_icon}
-                    alt=""
-                    className="w-7"
-                  />
-                  <div>
-                    <p className="text-gray-600 text-[0.6rem]">칭호</p>
-                    <p>{equipmentData?.title.title_name}</p>
+              {equipmentData?.title !== null ? (
+                <div className="border border-gray-300 rounded-md bg-white text-xs p-3 flex justify-start items-center">
+                  <div className="flex justify-start items-center gap-5">
+                    <img
+                      src={equipmentData?.title.title_icon}
+                      alt=""
+                      className="w-7"
+                    />
+                    <div>
+                      <p className="text-gray-600 text-[0.6rem]">칭호</p>
+                      <p>{equipmentData?.title.title_name}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : null}
+
               <div className="w-full lg:col-span-3 grid lg:grid-cols-2 grid-cols-1 gap-4 text-[0.6rem] text-gray-600 font-bold">
                 <div className="bg-white border border-gray-300 rounded-md grid lg:grid-cols-6 grid-cols-3 gap-2 p-3">
                   <h1 className="lg:col-span-6 col-span-3">아케인심볼</h1>
@@ -217,7 +220,7 @@ function MemberItem() {
         </>
       ) : (
         <div className="w-full h-full flex justify-center items-center">
-          <img src="/loading.gif" alt="" className="w-[20vw]"/>
+          <img src="/loading.gif" alt="" className="w-[20vw]" />
         </div>
       )}
     </>
