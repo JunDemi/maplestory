@@ -440,3 +440,36 @@ interface ISybolList {
     symbol_growth_count: number;
     symbol_require_growth_count: number;
 }
+//장착 캐시 장비
+export interface ICash {
+  cash_item_equipment_preset_1: ICashItems[];
+}
+interface ICashItems {
+  cash_item_equipment_part: string;
+  cash_item_equipment_slot: string;
+  cash_item_name: string;
+  cash_item_icon: string;
+  cash_item_description: string;
+  cash_item_option: [],
+  date_expire: string;
+  date_option_expire: string;
+  cash_item_label: string;
+  cash_item_coloring_prism: string;
+  base_preset_item_disable_flag: number;
+}
+//장착 헤어, 성형, 피부
+export interface IBeauty {
+  character_hair: {
+    hair_name: string;
+    base_color: string;
+    mix_color: string; //null
+    mix_rate: number //0
+  },
+  character_face: {
+    face_name: string;
+    base_color: string;
+    mix_color: string; //null
+    mix_rate: string; //0
+  },
+  character_skin_name: string;
+}

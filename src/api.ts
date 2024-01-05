@@ -114,7 +114,31 @@ export const getSymbol = async(ocid?: string) => {
 //장착 펫 정보
 //적용 세트 효과 정보
 //장착 캐시 정보
+export const getCash = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/cashitem-equipment?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //헤어, 성형, 피부 정보
+export const getBeauty = async(ocid?: string) => {
+  return await fetch(`${BASE_URL}/character/beauty-equipment?ocid=${ocid}&date=${yesterday}`, {
+    headers: {
+      "x-nxopen-api-key": API_KEY,
+    },
+  })
+  .then((response) => {
+    if (!response.ok) { return null }
+    return response.json();
+  })
+  .catch((error) => console.log(error));
+};
 //장착 스킬 정보
 //장착 링크 스킬 정보
 //5차 스킬 정보
