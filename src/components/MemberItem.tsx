@@ -1,9 +1,9 @@
 import React from "react";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
-import { IEquipment } from "../interfaces";
+import { IEquipment, ISymbol } from "../interfaces";
 import { useQuery } from "react-query";
-import { getEquipment } from "../api";
+import { getEquipment, getSymbol } from "../api";
 import { cls, optionCalc, optionFormat } from "../Utils";
 
 function MemberItem() {
@@ -18,7 +18,15 @@ function MemberItem() {
       enabled: !!ocid,
     }
   );
-
+  //클릭한 캐릭터의 장착 심볼 조회
+  const { data: sybolData } = useQuery<ISymbol>(
+    ["your_symbol", ocid],
+    () => getSymbol(ocid),
+    {
+      staleTime: Infinity,
+      enabled: !!ocid,
+    }
+  );
   return (
     <>
       {ocid ? (
@@ -171,9 +179,33 @@ function MemberItem() {
                 className="w-7"
               />
               <div>
-                <p className="text-gray-600">칭호</p>
+                <p className="text-gray-600 text-[0.6rem]">칭호</p>
                 <p>{equipmentData?.title.title_name}</p>
               </div>
+            </div>
+          </div>
+          <div className="w-full lg:col-span-3 grid lg:grid-cols-2 grid-cols-1 gap-4 text-[0.6rem] text-gray-600">
+            <div className="bg-white border border-gray-300 rounded-md grid lg:grid-cols-6 grid-cols-3 gap-2 p-3">
+              <h1 className="lg:col-span-6 col-span-3">아케인심볼</h1>
+            {sybolData?.symbol.slice(0,6).map((data, number) => (
+              <>
+              <div key={number} className="flex flex-col justify-center items-center gap-2">
+                <img src={data.symbol_icon} alt="" className="w-10"/>
+                <p>Lv.{data.symbol_level}</p>
+              </div>
+              </>
+            ))}
+            </div>
+            <div className="bg-white border border-gray-300 rounded-md grid lg:grid-cols-6 grid-cols-3 gap-2 p-3">
+              <h1 className="lg:col-span-6 col-span-3">어센틱심볼</h1>
+            {sybolData?.symbol.slice(6,12).map((data, number) => (
+              <>
+              <div key={number} className="flex flex-col justify-center items-center gap-2">
+                <img src={data.symbol_icon} alt="" className="w-10"/>
+                <p>Lv.{data.symbol_level}</p>
+              </div>
+              </>
+            ))}
             </div>
           </div>
         </div>

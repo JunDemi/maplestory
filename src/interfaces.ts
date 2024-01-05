@@ -420,3 +420,23 @@ export interface IEquipment {
     }
   ];
 }
+//장착 심볼
+export interface ISymbol {
+  date: string;
+  character_class: string;
+  symbol: ISybolList[];
+}
+interface ISybolList {
+    symbol_name: string;
+    symbol_icon: string;
+    symbol_description: string;
+    symbol_force: number;
+    symbol_level: number;
+    symbol_str: number;
+    symbol_dex: number;
+    symbol_int: number;
+    symbol_luk: number;
+    symbol_hp: number;
+    symbol_growth_count: number;
+    symbol_require_growth_count: number;
+}
