@@ -32,7 +32,7 @@ function MemberItem() {
       {!isLoading ? (
         <>
           {ocid ? (
-            <div className="w-full overflow-y-scroll py-5 px-8 font-bold grid lg:grid-cols-3 grid-cols-1 gap-4">
+            <div className="w-full overflow-y-scroll py-5 px-8 grid lg:grid-cols-3 grid-cols-1 gap-4">
               {equipmentData?.item_equipment.map((data, number) => (
                 <div
                   className="border border-gray-300 rounded-md bg-white text-xs flex flex-col justify-center items-start"

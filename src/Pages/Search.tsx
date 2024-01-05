@@ -44,7 +44,7 @@ function Search() {
       <div
         className='bg-cover bg-fixed w-full h-[25dvh] flex flex-col justify-center items-center text-white gap-10 relative'
         style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/bgImage.png')` }}>
-          <h2 className='absolute bottom-0 text-3xl font-bold tracking-widest'>검색</h2>
+          <h2 className='absolute bottom-0 text-3xl tracking-widest'>검색</h2>
       </div>
       <div className='flex flex-col justify-center items-center mt-10'>
         <form className='flex justify-between items-center gap-5' onSubmit={handleSubmit(onValid)}>

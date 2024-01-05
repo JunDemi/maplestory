@@ -31,7 +31,7 @@ function MemberCash() {
       {!isLoading ? (
         <>
           {ocid ? (
-            <div className="w-full overflow-y-scroll py-5 px-8 font-bold grid lg:grid-cols-3 grid-cols-1 gap-4">
+            <div className="w-full overflow-y-scroll py-5 px-8 grid lg:grid-cols-3 grid-cols-1 gap-4">
               <div className="border border-gray-300 rounded-md bg-white text-xs flex justify-start items-center">
                 <div className="flex justify-start items-center p-3">
                   <div className="flex justify-start items-center gap-3">

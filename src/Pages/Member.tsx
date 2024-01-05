@@ -130,7 +130,7 @@ function Member() {
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
         }}
       >
-        <h2 className="absolute bottom-0 text-3xl font-bold tracking-widest">
+        <h2 className="absolute bottom-0 text-3xl tracking-widest">
           멤버
         </h2>
       </div>
