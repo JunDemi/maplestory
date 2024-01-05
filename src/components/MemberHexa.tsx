@@ -102,7 +102,7 @@ function MemberHexa() {
                     style={{
                       backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('/purpleSpace.png')`,
                     }}
-                    className="lg:w-2/3 text-white bg-fixed lg:grid-cols-4 grid grid-cols-2 justify-center items-center p-3 gap-5 border border-gray-300 rounded-lg"
+                    className="lg:w-2/3 w-full text-white bg-fixed lg:grid-cols-4 grid grid-cols-2 justify-center items-center p-3 gap-5 border border-gray-300 rounded-lg"
                   >
                     {hexaData?.character_skill.map((data, number) => (
                       <div

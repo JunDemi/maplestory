@@ -190,7 +190,7 @@ function Member() {
                   />
                   <motion.div
                     layoutId={matchedName}
-                    className="fixed top-[12dvh] lg:w-[75vw] w-[95vw] h-[80vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                    className="fixed top-[11dvh] lg:w-[75vw] w-[95vw] lg:h-[80vh] h-[70vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
                       style={{
