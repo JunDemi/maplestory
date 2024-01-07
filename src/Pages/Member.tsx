@@ -198,7 +198,7 @@ function Member() {
                       }}
                       className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5"
                     >
-                      <motion.img
+                      <img
                         src={BasicMatch?.character_image}
                         alt=""
                         className="lg:w-32 w-24"
