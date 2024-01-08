@@ -56,6 +56,8 @@ export const myFirstStat = (job?: string) => {
       return "HP";
     case "제논":
       return "LUK"; // &&"STR"&&"DEX"
+    default:
+      return "";
   }
 };
 //잠재옵션 내용이 너무 긴 옵션은 글자를 줄이도록 포맷
@@ -348,6 +350,7 @@ export const optionCalc = (
       case "스트라이커":
       case "은월":
       case "아크":
+      default:
         return Number(str) + Number(all) * 10 + Number(atk) * 4 + "급"; //STR
       case "보우마스터":
       case "신궁":

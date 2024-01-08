@@ -91,7 +91,7 @@ function Search() {
       </div>
       <div className="flex flex-col justify-center items-center mt-10">
         <form className="" onSubmit={handleSubmit(onValid)}>
-          <p className="text-xs text-gray-500 tracking-tight mb-2">기준 접속일: {yesterday}</p>
+          <p className="text-xs text-gray-500 tracking-tight mb-2">접속 기준일: {yesterday}</p>
           <div className="flex justify-between items-center border border-gray-500 bg-white rounded-full">
             <input
               type="text"

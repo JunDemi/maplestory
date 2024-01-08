@@ -142,7 +142,7 @@ function Member() {
             <AnimatePresence>
               <div className="grid lg:grid-cols-4 grid-cols-1 my-10 gap-6">
                 <div className="text-xl lg:col-span-4 flex flex-col justify-center items-start gap-1">
-                  <p className="text-xs text-gray-500 tracking-tight">기준 접속일: {yesterday}</p>
+                  <p className="text-xs text-gray-500 tracking-tight">접속 기준일: {yesterday}</p>
                   <span className="bg-blue-800 px-4 py-1 rounded-full text-white">{memberArray2.length}명 활동중</span>
                 </div>
                 {memberArray2.map((data, number) => (
