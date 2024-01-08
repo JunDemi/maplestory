@@ -4,6 +4,7 @@ import { ocidState } from "../atom";
 import { useQuery } from "react-query";
 import { IBeauty, ICash } from "../interfaces";
 import { getBeauty, getCash } from "../api";
+import LoadingGIF from "./LoadingGIF";
 
 function MemberCash() {
   //Recoil State
@@ -143,9 +144,7 @@ function MemberCash() {
           ) : null}
         </>
       ) : (
-        <div className="w-full h-full flex justify-center items-center">
-          <img src="/loading.gif" alt="" className="w-[20vw]"/>
-        </div>
+        <LoadingGIF />
       )}
     </>
   );

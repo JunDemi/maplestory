@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import { IHexa, IHexaStat } from "../interfaces";
 import { getHexa, getHexaStat } from "../api";
 import { hexaStatLevel } from "../Utils";
+import LoadingGIF from "./LoadingGIF";
 
 function MemberHexa() {
   //Recoil State
@@ -125,9 +126,7 @@ function MemberHexa() {
               ) : null}
             </>
           ) : (
-            <div className="w-full h-full flex justify-center items-center">
-              <img src="/loading.gif" alt="" className="w-[20vw]" />
-            </div>
+            <LoadingGIF />
           )}
         </>
       ) : (

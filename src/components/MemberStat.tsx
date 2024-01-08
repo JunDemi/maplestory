@@ -5,6 +5,7 @@ import { cls, myFirstStat } from "../Utils";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
 import { IAbility, IDojang, IStat, IUnion } from "../interfaces";
+import LoadingGIF from "./LoadingGIF";
 
 function MemberStat() {
   //RecoilState불러오기
@@ -188,9 +189,7 @@ function MemberStat() {
           ) : null}
         </>
       ) : (
-        <div className="w-full h-full flex justify-center items-center">
-          <img src="/loading.gif" alt="" className="w-[20vw]"/>
-        </div>
+        <LoadingGIF />
       )}
     </>
   );

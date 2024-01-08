@@ -5,6 +5,7 @@ import { IEquipment, ISymbol } from "../interfaces";
 import { useQuery } from "react-query";
 import { getEquipment, getSymbol } from "../api";
 import { cls, optionCalc, optionFormat } from "../Utils";
+import LoadingGIF from "./LoadingGIF";
 
 function MemberItem() {
   //Recoil State
@@ -219,9 +220,7 @@ function MemberItem() {
           ) : null}
         </>
       ) : (
-        <div className="w-full h-full flex justify-center items-center">
-          <img src="/loading.gif" alt="" className="w-[20vw]" />
-        </div>
+        <LoadingGIF />
       )}
     </>
   );
