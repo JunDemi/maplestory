@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useQuery } from "react-query";
-import { getBasic, getOCID, getPop } from "../api";
+import { getBasic, getOCID, getPop, yesterday } from "../api";
 import { Helmet } from "react-helmet";
 import { IMemberBasic, IOcid } from "../interfaces";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,33 +90,33 @@ function Search() {
         <h2 className="absolute bottom-0 text-3xl tracking-widest">검색</h2>
       </div>
       <div className="flex flex-col justify-center items-center mt-10">
-        <form
-          className="flex justify-between items-center border border-gray-500 bg-white rounded-full"
-          onSubmit={handleSubmit(onValid)}
-        >
-          <input
-            type="text"
-            placeholder="닉네임을 입력하세요"
-            className="py-3 rounded-full lg:text-base text-sm lg:w-96 w-[70vw] px-5"
-            {...register("name", { required: true })}
-            autoComplete="off"
-          />
-          <button type="submit" className="p-3 lg:text-base text-sm mr-2">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="rgb(97 104 118)"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                stroke-Linejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-              />
-            </svg>
-          </button>
+        <form className="" onSubmit={handleSubmit(onValid)}>
+          <p className="text-xs text-gray-500 tracking-tight mb-2">기준 접속일: {yesterday}</p>
+          <div className="flex justify-between items-center border border-gray-500 bg-white rounded-full">
+            <input
+              type="text"
+              placeholder="닉네임을 입력하세요"
+              className="py-3 rounded-full lg:text-base text-sm lg:w-96 w-[70vw] px-5"
+              {...register("name", { required: true })}
+              autoComplete="off"
+            />
+            <button type="submit" className="p-3 lg:text-base text-sm mr-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="rgb(97 104 118)"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  stroke-Linejoin="round"
+                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                />
+              </svg>
+            </button>
+          </div>
         </form>
         {ociddData ? (
           <>
@@ -132,7 +132,7 @@ function Search() {
                     className="mt-10 text-gray-700 border-white bg-white border shadow-md py-5 lg:px-32 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
                   >
                     <p className="text-xs border rounded-full border-orange-300 px-2 py-[0.15rem] text-orange-400">
-                        {basicData?.world_name}
+                      {basicData?.world_name}
                     </p>
                     <img
                       src={basicData?.character_image}
@@ -175,9 +175,10 @@ function Search() {
                             className="lg:w-32 w-24"
                           />
                           <div className="text-white flex flex-col gap-1 tracking-wider">
-                            <p className="text-[0.65rem]">{basicData?.world_name}</p>
+                            <p className="text-[0.65rem]">
+                              {basicData?.world_name}
+                            </p>
                             <div className="flex justify-start items-center gap-3">
-                              
                               <p className="text-xs border rounded-full border-blue-300 px-2 py-[0.15rem] text-blue-200">
                                 {basicData?.character_guild_name}
                               </p>
@@ -195,7 +196,6 @@ function Search() {
                             <p className="text-sm">
                               {basicData?.character_class}
                             </p>
-                            
                           </div>
                         </div>
                         <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 ">
