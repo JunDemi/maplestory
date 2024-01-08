@@ -129,8 +129,11 @@ function Search() {
                     layoutId={ociddData.ocid}
                     onClick={() => onCardClick(ociddData.ocid)}
                     whileHover={{ y: -5, backgroundColor: "#e9e9e9" }}
-                    className="mt-10 text-gray-700 border-white bg-white border shadow-md py-5 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-3"
+                    className="mt-10 text-gray-700 border-white bg-white border shadow-md py-5 px-32 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
                   >
+                    <p className="text-xs border rounded-full border-orange-300 px-2 py-[0.15rem] text-orange-400">
+                        {basicData?.world_name}
+                    </p>
                     <img
                       src={basicData?.character_image}
                       alt=""
@@ -172,7 +175,9 @@ function Search() {
                             className="lg:w-32 w-24"
                           />
                           <div className="text-white flex flex-col gap-1 tracking-wider">
+                            <p className="text-[0.65rem]">{basicData?.world_name}</p>
                             <div className="flex justify-start items-center gap-3">
+                              
                               <p className="text-xs border rounded-full border-blue-300 px-2 py-[0.15rem] text-blue-200">
                                 {basicData?.character_guild_name}
                               </p>
@@ -190,6 +195,7 @@ function Search() {
                             <p className="text-sm">
                               {basicData?.character_class}
                             </p>
+                            
                           </div>
                         </div>
                         <div className="z-10 w-full grid grid-cols-4 shadow-md text-center cursor-pointer text-sm text-gray-500 ">

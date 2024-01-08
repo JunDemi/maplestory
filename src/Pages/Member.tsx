@@ -164,7 +164,7 @@ function Member() {
                         : data?.character_name === "해녀데스"
                         ? "text-blue-700 border-blue-300"
                         : " text-gray-700 border-white",
-                      "bg-white border shadow-md py-5 lg:px-14 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-3"
+                      "bg-white border shadow-md py-5 lg:px-14 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
                     )}
                     whileHover={{ y: -5, backgroundColor: "#e9e9e9" }}
                   >
