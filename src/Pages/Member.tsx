@@ -190,13 +190,13 @@ function Member() {
                   />
                   <motion.div
                     layoutId={matchedName}
-                    className="fixed top-[11dvh] lg:w-[75vw] w-[95vw] lg:h-[80vh] h-[70vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                    className="fixed top-[11dvh] lg:w-[75vw] w-[95vw] lg:h-[80vh] h-[72vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                   >
                     <div
                       style={{
                         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
                       }}
-                      className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5"
+                      className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5 py-1"
                     >
                       <img
                         src={BasicMatch?.character_image}

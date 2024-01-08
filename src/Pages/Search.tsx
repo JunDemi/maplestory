@@ -129,7 +129,7 @@ function Search() {
                     layoutId={ociddData.ocid}
                     onClick={() => onCardClick(ociddData.ocid)}
                     whileHover={{ y: -5, backgroundColor: "#e9e9e9" }}
-                    className="mt-10 text-gray-700 border-white bg-white border shadow-md py-5 px-32 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
+                    className="mt-10 text-gray-700 border-white bg-white border shadow-md py-5 lg:px-32 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
                   >
                     <p className="text-xs border rounded-full border-orange-300 px-2 py-[0.15rem] text-orange-400">
                         {basicData?.world_name}
@@ -161,13 +161,13 @@ function Search() {
                       />
                       <motion.div
                         layoutId={ociddData.ocid}
-                        className="fixed top-[11dvh] lg:w-[75vw] w-[95vw] lg:h-[80vh] h-[70vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
+                        className="fixed top-[11dvh] lg:w-[75vw] w-[95vw] lg:h-[80vh] h-[72vh] mx-auto bg-[whitesmoke] z-30 p-1 rounded-xl flex justify-start items-center flex-col"
                       >
                         <div
                           style={{
                             backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
                           }}
-                          className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5"
+                          className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5 py-2"
                         >
                           <img
                             src={basicData?.character_image}
