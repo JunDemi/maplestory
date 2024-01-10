@@ -58,7 +58,7 @@ function Header() {
         moblieMenuAnimation.start("top");
       }
     });
-  }, [scrollY, navAnimation, buttonAnimation]);
+  }, []);
   return (
     <>
       <motion.nav

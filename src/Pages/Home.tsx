@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 import { Helmet } from "react-helmet";
-import Banner from '../components/Banner';
-import Member from './Member'; //메인화면에 미리 렌더링하여 api호출 쿼리를 캐시에 저장
+import Banner from "../components/Banner";
+import Member from "./Member"; //메인화면에 미리 렌더링하여 api호출 쿼리를 캐시에 저장
+import Intro1 from "../components/Intro1";
 
 function Home() {
   return (
@@ -9,10 +10,11 @@ function Home() {
       <Helmet>
         <title>Wings | Home</title>
       </Helmet>
-      <Banner/>
-      <div className='hidden'>
-        <Member/>
+      <Banner />
+      <div className="hidden">
+        <Member />
       </div>
+      <Intro1/>
     </>
   );
 }
