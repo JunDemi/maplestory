@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
+import { useRecoilState } from 'recoil';
+import { refState } from '../atom';
 
 const scrollGIF = '/Scroll-Down-white.gif';
 
 function Banner() {
+  const [introRef] = useRecoilState(refState);
+  const containerRef = useRef<any | undefined>(0);
+    if (introRef === "true") {
+      const currentScroll = containerRef.current.scrollTop;
+      window.scrollTo({
+        top: currentScroll + window.innerHeight,
+        behavior: "smooth",
+      });
+    }
   return (
     <>
       <div
+        ref={containerRef}
         className='bg-cover bg-fixed w-full h-[100dvh] flex flex-col justify-center items-center text-white gap-10 relative'
         style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/bgImage.png')` }}>
         <div className='w-[80vw] flex flex-col lg:justify-start justify-center lg:items-start items-center'>
@@ -49,11 +61,12 @@ function Banner() {
             </motion.div>
           </Link>
         </div>
-        <div className='flex flex-col justify-center items-center gap-1 absolute bottom-0'>
+        <div className='hidden lg:flex flex-col justify-center items-center gap-1 absolute bottom-0'>
           <h2 className='font-thin text-sm'>scroll</h2>
           <img src={scrollGIF} alt="" className='lg:w-9 w-5' />
         </div>
       </div>
+
     </>
 
   );

@@ -33,10 +33,10 @@ function Header() {
   };
   const ScrollUp = {
     top: {
-      opacity: "0",
+      opacity: 0,
     },
     scroll: {
-      opacity: "1",
+      opacity: 1,
     },
   };
   const scrollToTop = () => {
