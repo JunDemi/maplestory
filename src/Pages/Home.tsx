@@ -4,6 +4,7 @@ import Banner from "../components/Banner";
 import Member from "./Member"; //메인화면에 미리 렌더링하여 api호출 쿼리를 캐시에 저장
 import FadeFixScroll from "../components/FadeFixScroll";
 import Introduce from "../components/Introduce";
+import MobileRegister from "../components/MobileRegister";
 
 function Home() {
   return (
@@ -17,6 +18,7 @@ function Home() {
       </div>
       <Introduce/>
       <FadeFixScroll/>
+<MobileRegister/>
     </>
   );
 }
