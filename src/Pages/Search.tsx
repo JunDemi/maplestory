@@ -166,7 +166,7 @@ function Search() {
                       >
                         <div
                           style={{
-                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
+                            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 1)), url('https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/rm2rvkfabuukt1zida0x.png')`,
                           }}
                           className="w-full bg-blue-300 rounded-lg flex justify-start items-center gap-5 py-2"
                         >
