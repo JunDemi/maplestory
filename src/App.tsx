@@ -5,6 +5,7 @@ import Home from './Pages/Home';
 import Search from './Pages/Search';
 import Member from './Pages/Member';
 import LinkToTop from './LinkToTop';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/member' element={<Member/>}/>
         <Route path='/search' element={<Search/>}/>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   );
 }

@@ -127,7 +127,7 @@ function Member() {
       <div
         className="bg-cover bg-fixed w-full h-[25dvh] flex flex-col justify-center items-center text-white gap-10 relative"
         style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('/bgImage.png')`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 1)), url('https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/rm2rvkfabuukt1zida0x.png')`,
         }}
       >
         <h2 className="absolute bottom-0 text-3xl tracking-widest">

@@ -101,7 +101,7 @@ function MemberHexa() {
                   </div>
                   <div
                     style={{
-                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('/purpleSpace.png')`,
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8)), url('https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/bfv8y7zswj3syemf0l0t.avif')`,
                     }}
                     className="lg:w-2/3 w-full text-white lg:bg-fixed bg-cover bg-no-repeat lg:grid-cols-4 grid grid-cols-2 justify-center items-center p-3 gap-5 border border-gray-300 rounded-lg"
                   >

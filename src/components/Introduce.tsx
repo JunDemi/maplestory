@@ -5,9 +5,7 @@ import { refState } from "../atom";
 function Introduce() {
   const [introRef, setIntroRef] = useRecoilState(refState);
   const ref = useRef(null);
-  const ref2 = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const isInView2 = useInView(ref2, { once: true });
   if (isInView && window.scrollY < 1000) {
     setIntroRef("true");
   } else {
@@ -29,20 +27,20 @@ function Introduce() {
           </h3>
           <div className="p-5 flex flex-col justify-center items-start gap-2">
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro1.png" alt="" className="w-8 h-8" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/w4tw9kj2gqkliovpvi7n.png" alt="" className="w-8 h-8" />
               <p>노블레스 포인트 49P</p>
             </span>
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro2.png" alt="" className="w-8 h-8"/>
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/crxzujkz6kpfjbezr0pg.png" alt="" className="w-8 h-8"/>
               <p>부캐길드 (노블레스 45P)</p>
             </span>
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro3.png" alt="" className="w-8 h-8" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/pgebev6hj6e8amorrbtc.png" alt="" className="w-8 h-8" />
               <p>활발한 길드 내 보스 파티</p>
             </span>
             <span className="flex justify-center items-center gap-3">
               <img
-                src="/intro4.png"
+                src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/dvrz4f506ykve1vfaijs.png"
                 alt=""
                 className="w-8 h-8 border border-gray-600 rounded-[0.275rem]"
               />
@@ -55,7 +53,7 @@ function Introduce() {
           </div>
         </div>
         <img
-          src="/purpleSpace.png"
+          src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/bfv8y7zswj3syemf0l0t.avif"
           alt=""
           className="rounded-xl shadow-xl w-[26rem] h-[21rem]"
         />
@@ -68,20 +66,20 @@ function Introduce() {
           </h3>
           <div className="p-5 flex flex-col justify-center items-start gap-2">
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro1.png" alt="" className="w-8 h-8" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/w4tw9kj2gqkliovpvi7n.png" alt="" className="w-8 h-8" />
               <p>노블레스 포인트 49P</p>
             </span>
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro2.png" alt="" className="w-8 h-8" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/crxzujkz6kpfjbezr0pg.png" alt="" className="w-8 h-8" />
               <p>부캐길드 (노블레스 45P)</p>
             </span>
             <span className="flex justify-center items-center gap-3">
-              <img src="/intro3.png" alt="" className="w-8 h-8" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467843/Wings/pgebev6hj6e8amorrbtc.png" alt="" className="w-8 h-8" />
               <p>활발한 길드 내 보스 파티</p>
             </span>
             <span className="flex justify-center items-center gap-3">
               <img
-                src="/intro4.png"
+                src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/dvrz4f506ykve1vfaijs.png"
                 alt=""
                 className="w-8 h-8 border border-gray-600 rounded-[0.275rem]"
               />
@@ -94,14 +92,11 @@ function Introduce() {
           </div>
         </div>
       </div>
-      <motion.div
+      <div
         className="flex flex-col justify-center items-center py-3"
-        initial={{ opacity: 0 }}
-        animate={isInView2 ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1, delay: 0.2 }}
       >
         <div className="grid lg:grid-cols-6 grid-cols-1 lg:gap-7 gap-3 mt-5 lg:text-sm text-xs">
-          <h1 className="lg:text-2xl text-lg lg:col-span-6" ref={ref2}>
+          <h1 className="lg:text-2xl text-lg lg:col-span-6">
             가입조건
           </h1>
           <div className="flex flex-col  items-center shadow-lg lg:p-10 lg:pb-5 p-3 pb-2 lg:gap-5 gap-3 bg-white rounded-xl lg:col-span-2">
@@ -245,7 +240,7 @@ function Introduce() {
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </>
   );
 }

@@ -4,8 +4,7 @@ import { motion, useScroll } from "framer-motion";
 function FadeFixScroll() {
   const [introChange, set_introChange] = useState(false);
   const { scrollY } = useScroll();
-
-  //1400스크롤까지 내려가면 화면 전환
+  //2800스크롤까지 내려가면 화면 전환
   useEffect(() => {
     scrollY.onChange(() => {
       if (scrollY.get() > 2800) {
@@ -17,21 +16,22 @@ function FadeFixScroll() {
   }, [scrollY, introChange]);
   return (
     <>
-      <div className="hidden lg:flex justify-center items-start w-full h-[300dvh] pt-28">
-        <div className="sticky top-32 w-full flex justify-center items-center">
+      <div className="hidden lg:flex justify-center items-start w-full h-[350dvh] pt-28">
+        <div 
+        className="sticky top-32 w-full flex justify-center items-center">
           <motion.div
             initial={{ opacity: 0 }}
             animate={!introChange ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6 }}
-            className="absolute top-0 flex flex-col justify-center items-start"
+            className="flex flex-col justify-center items-start"
           >
             <h1 className="text-2xl">본인인증 1</h1>
             <h2 className="text-base text-gray-600">
               메이플 핸즈 혹은 캐릭터 선택창 인증 (택 1)
             </h2>
             <div className="flex justify-center items-center gap-5 my-5">
-              <img src="/hands.png" alt="" className="h-[22rem]" />
-              <img src="/slots.png" alt="" className="h-[22rem]" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467845/Wings/fgddiefytfpcjjlpi67j.png" alt="" className="h-[22rem]" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705468436/Wings/n0i01xmci34k5y8weygi.png" alt="" className="h-[22rem]" />
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-gray-600 flex items-center gap-3">
@@ -82,8 +82,8 @@ function FadeFixScroll() {
               주민등록증, 면허증, 전역증, 기타 인증 수단 (택 1)
             </h2>
             <div className="flex justify-center items-center my-5 gap-5">
-              <img src="/license.png" alt="" className="h-[21rem]" />
-              <img src="/c_license.png" alt="" className="h-[21rem]" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467845/Wings/uqmqin6lw5czeliaopa8.png" alt="" className="h-[21rem]" />
+              <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/sssskr8ffmwr40vuxcnf.png" alt="" className="h-[21rem]" />
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-gray-600 flex items-center gap-3">
@@ -138,11 +138,12 @@ function FadeFixScroll() {
                 기타 인증 수단 - 카카오 인증서, coov, 명함 등 (생년이 공개되어야 합니다.)
               </span>
               <p className="text-xs text-gray-500">본인 인증을 하는 이유는 오직 성인이 맞는지 확인하기 위함입니다.</p>
-              <p className="text-xs text-gray-500">허가 없는 개인정보 수집 및 도용은 위법행위입니다. 인증이 확인되면 전달받은 사진은 곧바로 삭제해드립니다.</p>
+              <p className="text-xs text-gray-500">허가 없는 개인정보 수집 및 도용은 위법행위입니다. 인증이 확인되면 전달받은 사진은 모두 삭제합니다.</p>
             </div>
           </motion.div>
         </div>
       </div>
+
     </>
   );
 }

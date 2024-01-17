@@ -8,3 +8,7 @@ export const refState:RecoilState<string> = atom({
     key: "isRef",
     default: "false"
 });
+export const endingRefState:RecoilState<string> = atom({
+    key: "endingRef",
+    default: "false"
+});

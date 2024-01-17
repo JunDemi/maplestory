@@ -11,8 +11,8 @@ function MobileRegister() {
             메이플 핸즈 혹은 캐릭터 선택창 인증 (택 1)
           </h2>
           <div className="flex justify-center items-center my-2 w-full gap-2">
-            <img src="/hands.png" alt="" className="h-[9.5rem]" />
-            <img src="/slots.png" alt="" className="h-[9.5rem]" />
+            <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467845/Wings/fgddiefytfpcjjlpi67j.png" alt="" className="h-[9.5rem]" />
+            <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705468436/Wings/n0i01xmci34k5y8weygi.png" alt="" className="h-[9.5rem]" />
           </div>
           <div className="flex flex-col gap-2">
             <span className="text-gray-600 flex items-center gap-1 text-xs">
@@ -58,8 +58,8 @@ function MobileRegister() {
             주민등록증, 면허증, 전역증, 기타 인증 수단 (택 1)
           </h2>
           <div className="flex justify-center items-center my-2 gap-2 w-full">
-            <img src="/license.png" alt="" className="h-[9.5rem]" />
-            <img src="/c_license.png" alt="" className="h-[9.5rem]" />
+            <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467845/Wings/uqmqin6lw5czeliaopa8.png" alt="" className="h-[9.5rem]" />
+            <img src="https://res.cloudinary.com/dgmgeotyk/image/upload/v1705467844/Wings/sssskr8ffmwr40vuxcnf.png" alt="" className="h-[9.5rem]" />
           </div>
           <div className="flex flex-col gap-2 text-xs">
             <span className="text-gray-600">
@@ -82,7 +82,7 @@ function MobileRegister() {
             </p>
             <p className="text-xs text-gray-500">
               허가 없는 개인정보 수집 및 도용은 위법행위입니다. 인증이 확인되면
-              전달받은 사진은 곧바로 삭제해드립니다.
+              전달받은 사진은 모두 삭제합니다.
             </p>
           </div>
         </motion.div>

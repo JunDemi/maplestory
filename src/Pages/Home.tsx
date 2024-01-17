@@ -5,6 +5,7 @@ import Member from "./Member"; //메인화면에 미리 렌더링하여 api호�
 import FadeFixScroll from "../components/FadeFixScroll";
 import Introduce from "../components/Introduce";
 import MobileRegister from "../components/MobileRegister";
+import Ending from "../components/Ending";
 
 function Home() {
   return (
@@ -16,9 +17,10 @@ function Home() {
       <div className="hidden">
         <Member />
       </div>
-      <Introduce/>
-      <FadeFixScroll/>
-<MobileRegister/>
+      <Introduce />
+      <FadeFixScroll />
+      <MobileRegister />
+      <Ending />
     </>
   );
 }
