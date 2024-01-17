@@ -27,7 +27,7 @@ function Banner() {
           <p className='lg:text-5xl text-lg mb-10 lg:ml-10'>길드 공식 홈페이지</p>
         </div>
         <div className='flex justify-center items-center'>
-          <Link to="https://open.kakao.com/o/gwtzR8N" target='_blank'>
+          <Link to="https://open.kakao.com/o/gwtzR8N">
             <motion.div
             initial={{outline: "1px solid rgba(134,239,172,0.3)", outlineOffset: "0", backgroundColor: "rgba(134,239,172,0.3)"}}
             whileHover={{outline: "1px solid rgb(134,239,172)",outlineOffset: "60px", scale: 0.90, backgroundColor: "rgba(134,239,172,0.5)"}}
