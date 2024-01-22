@@ -85,7 +85,7 @@ function MemberStat() {
               <div className="grid grid-cols-3 w-full border-b border-gray-300 gap-5 py-2">
                 {[20, 16, 17, 21, 18, 19].map((data) => (
                   <>
-                    <div>
+                    <div key={data}>
                       <p className="text-gray-500 text-xs">
                         {statData?.final_stat[data].stat_name}
                       </p>
@@ -109,7 +109,7 @@ function MemberStat() {
               <div className="grid grid-cols-2 w-full border-b border-gray-300 gap-5 py-2">
                 {[2, 3, 4, 5, 6, 7, 30, 35].map((data) => (
                   <>
-                    <div>
+                    <div key={data}>
                       <p className="text-gray-500 text-xs">
                         {statData?.final_stat[data].stat_name}
                       </p>
@@ -126,7 +126,7 @@ function MemberStat() {
               <div className="grid grid-cols-3 w-full border-b border-gray-300 gap-5 py-2">
                 {[13, 14, 15].map((data) => (
                   <>
-                    <div>
+                    <div key={data}>
                       <p className="text-gray-500 text-xs">
                         {statData?.final_stat[data].stat_name}
                       </p>

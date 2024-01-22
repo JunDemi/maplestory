@@ -442,7 +442,11 @@ interface ISybolList {
 }
 //장착 캐시 장비
 export interface ICash {
+  preset_no: number;
+  cash_item_equipment_base: ICashItems[];
   cash_item_equipment_preset_1: ICashItems[];
+  cash_item_equipment_preset_2: ICashItems[];
+  cash_item_equipment_preset_3: ICashItems[];
 }
 interface ICashItems {
   cash_item_equipment_part: string;
