@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { ocidState } from "../atom";
 import { useQuery } from "react-query";
@@ -27,6 +27,36 @@ function MemberCash() {
       enabled: !!ocid,
     }
   );
+  //캐시장비 적용 프리셋 산출 
+  const cashPreset = [];
+  if(cashData?.preset_no === 1) {
+    switch(cashData.cash_item_equipment_preset_1.length){
+      case 0:
+        cashPreset.push(cashData.cash_item_equipment_base);
+        break;
+      default:
+        cashPreset.push(cashData.cash_item_equipment_preset_1);
+        break;
+    }
+  }else if(cashData?.preset_no === 2){
+    switch(cashData.cash_item_equipment_preset_2.length){
+      case 0:
+        cashPreset.push(cashData.cash_item_equipment_base);
+        break;
+      default:
+        cashPreset.push(cashData.cash_item_equipment_preset_2);
+        break;
+    }
+  }else if(cashData?.preset_no === 3){
+    switch(cashData.cash_item_equipment_preset_3.length){
+      case 0:
+        cashPreset.push(cashData.cash_item_equipment_base);
+        break;
+      default:
+        cashPreset.push(cashData.cash_item_equipment_preset_3);
+        break;
+    }
+  }
   return (
     <>
       {!isLoading ? (
@@ -120,7 +150,7 @@ function MemberCash() {
                   </div>
                 </div>
               </div>
-              {cashData?.cash_item_equipment_preset_1.map((data, number) => (
+              {cashPreset[0]?.map((data, number) => (
                 <>
                   <div
                     className="border border-gray-300 rounded-md bg-white text-xs flex flex-col justify-center items-start"
