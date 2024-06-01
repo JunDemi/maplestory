@@ -32,7 +32,7 @@ export const getOCID = async(name?: string) => {
 };
 //캐릭터 기본 정보
 export const getBasic = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/basic?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/basic?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -45,7 +45,7 @@ export const getBasic = async(ocid?: string) => {
 };
 //인기도 정보
 export const getPop = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}//character/popularity?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}//character/popularity?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -58,7 +58,7 @@ export const getPop = async(ocid?: string) => {
 };
 //종합 능력치 정보
 export const getStat = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/stat?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/stat?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -73,7 +73,7 @@ export const getStat = async(ocid?: string) => {
 //성향 정보
 //어빌리티 정보
 export const getAbility = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/ability?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/ability?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -86,7 +86,7 @@ export const getAbility = async(ocid?: string) => {
 };
 //장착 장비 정보
 export const getEquipment = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/item-equipment?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/item-equipment?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -99,7 +99,7 @@ export const getEquipment = async(ocid?: string) => {
 };
 //장착 심볼 정보
 export const getSymbol = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/symbol-equipment?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/symbol-equipment?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -115,7 +115,7 @@ export const getSymbol = async(ocid?: string) => {
 //적용 세트 효과 정보
 //장착 캐시 정보
 export const getCash = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/cashitem-equipment?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/cashitem-equipment?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -128,7 +128,7 @@ export const getCash = async(ocid?: string) => {
 };
 //헤어, 성형, 피부 정보
 export const getBeauty = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/beauty-equipment?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/beauty-equipment?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -144,7 +144,7 @@ export const getBeauty = async(ocid?: string) => {
 //5차 스킬 정보
 //6차 스킬 정보
 export const getHexa = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/skill?ocid=${ocid}&date=${yesterday}&character_skill_grade=6`, {
+  return await fetch(`${BASE_URL}/character/skill?ocid=${ocid}&character_skill_grade=6`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -157,7 +157,7 @@ export const getHexa = async(ocid?: string) => {
 };
 //HEXA 스탯 정보
 export const getHexaStat = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/hexamatrix-stat?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/hexamatrix-stat?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -170,7 +170,7 @@ export const getHexaStat = async(ocid?: string) => {
 };
 //무릉도장 정보
 export const getDojang = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/character/dojang?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/character/dojang?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -183,7 +183,7 @@ export const getDojang = async(ocid?: string) => {
 };
 //유니온 정보
 export const getUnion = async(ocid?: string) => {
-  return await fetch(`${BASE_URL}/user/union?ocid=${ocid}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/user/union?ocid=${ocid}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
@@ -196,7 +196,7 @@ export const getUnion = async(ocid?: string) => {
 };
 //길드 정보
 export const getGuildBasic = async() => {
-  return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildID}&date=${yesterday}`, {
+  return await fetch(`${BASE_URL}/guild/basic?oguild_id=${guildID}`, {
     headers: {
       "x-nxopen-api-key": API_KEY,
     },
