@@ -65,18 +65,22 @@ function Member() {
   );
   //레벨 높은 순으로 정렬하고 배열에 저장
   const memberArray2: IMemberBasic[] = [];
-  getmemberBasic.map((query) => memberArray2.push(query.data));
-  memberArray2.sort((a, b) => b.character_level - a.character_level);
+  getmemberBasic.forEach((query) => memberArray2.push(query.data));
+  memberArray2.sort((a, b) => b.character_level - a.character_level)
+  //불러오지 못한 캐릭터들은 제거
+  const memberArray3 = memberArray2.map(v => (
+    !v?.character_name ? null : v
+  )).filter(v => v !== null);
   //길드 관리자들은 배열에 첫 부분으로 이동
-  const adminName = ["해녀데스", "랸냐", "활맥", "불협화음", "키단", "볼짝"];
+  const adminName = ["꽂혔", "랸냐", "키단", "불협화음", "볼짝"];
   adminName.forEach((name) => {
-    const indexAdmin = memberArray2.findIndex(
+    const indexAdmin = memberArray3.findIndex(
       (item) => item?.character_name === name
     );
     if (indexAdmin !== -1) {
-      const move = memberArray2[indexAdmin];
-      memberArray2.splice(indexAdmin, 1);
-      memberArray2.unshift(move);
+      const move = memberArray3[indexAdmin];
+      memberArray3.splice(indexAdmin, 1);
+      memberArray3.unshift(move);
     }
   });
   //캐릭터 카드 클릭 이벤트
@@ -91,7 +95,7 @@ function Member() {
     set_infoType("stat");
   };
   //클릭한 카드 멤버의 이름과 일치한 배열 내의 이름을 뽑음
-  const BasicMatch = memberArray2.find(
+  const BasicMatch = memberArray3.find(
     (obj) => obj?.character_name === matchedName
   );
   //클릭한 카드 멤버의 Ocid불러오기
@@ -143,30 +147,28 @@ function Member() {
               <div className="grid lg:grid-cols-4 grid-cols-1 my-10 gap-6">
                 <div className="text-xl lg:col-span-4 flex flex-col justify-center items-start gap-1">
                   <p className="text-xs text-gray-500 tracking-tight">접속 기준일: {yesterday}</p>
-                  <span className="bg-blue-800 px-4 py-1 rounded-full text-white">{memberArray2.length}명 활동중</span>
+                  <span className="bg-blue-800 px-4 py-1 rounded-full text-white">{memberArray3.length}명 활동중</span>
                 </div>
-                {memberArray2.map((data, number) => (
+                {memberArray3.map((data, number) => data && (
                   <motion.div
                     layoutId={data?.character_name}
-                    onClick={() => onCardClick(data?.character_name)}
+                    onClick={() => onCardClick(data.character_name)}
                     key={number}
                     className={cls(
                       data?.character_name === "볼짝"
                         ? "text-pink-700 border-pink-300"
-                        : data?.character_name === "활맥"
+                        : data?.character_name === "불협화음"
                         ? "text-blue-700 border-blue-300"
                         : data?.character_name === "키단"
                         ? "text-blue-700 border-blue-300"
-                        : data?.character_name === "불협화음"
-                        ? "text-blue-700 border-blue-300"
                         : data?.character_name === "랸냐"
                         ? "text-blue-700 border-blue-300"
-                        : data?.character_name === "해녀데스"
+                        : data?.character_name === "꽂혔"
                         ? "text-blue-700 border-blue-300"
                         : " text-gray-700 border-white",
                       "bg-white border shadow-md py-5 lg:px-14 px-24 cursor-pointer rounded-lg flex flex-col justify-center items-center gap-2"
                     )}
-                    whileHover={{ y: -5, backgroundColor: "#e9e9e9" }}
+                    whileHover={{ y: -5, backgroundColor: "#e9e9e9" }} 
                   >
                     <img src={data?.character_image} alt="" className="w-24" />
                     <span className="flex justify-center items-center gap-2">
@@ -213,7 +215,7 @@ function Member() {
                             <span className="text-xs bg-red-800 px-2 py-[0.1rem] rounded-full">
                               마스터
                             </span>
-                          ) : BasicMatch?.character_name === "활맥" ? (
+                          ) : BasicMatch?.character_name === "불협화음" ? (
                             <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
                               부마스터
                             </span>
@@ -221,15 +223,11 @@ function Member() {
                             <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
                               부마스터
                             </span>
-                          ) : BasicMatch?.character_name === "불협화음" ? (
-                            <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
-                              부마스터
-                            </span>
                           ) : BasicMatch?.character_name === "랸냐" ? (
                             <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
                               부마스터
                             </span>
-                          ) : BasicMatch?.character_name === "해녀데스" ? (
+                          ) : BasicMatch?.character_name === "꽂혔" ? (
                             <span className="text-xs bg-blue-800 px-2 py-[0.1rem] rounded-full">
                               부마스터
                             </span>
